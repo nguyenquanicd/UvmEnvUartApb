@@ -34,5 +34,6 @@ Step 4: Choice "NO" when the finish window occurs
 Step 5: View the result on Transacript and Waveform
 
 //Test Github Desktop
+//Viet test Gibhub
 
 END
