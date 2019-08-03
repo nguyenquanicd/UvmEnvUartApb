@@ -12,7 +12,8 @@ class cApbMasterWriteSeq extends uvm_sequence#(cApbTransaction);
 	`uvm_declare_p_sequencer(cApbMasterSequencer)
   
   cApbTransaction coApbTransaction;
-
+  
+  rand logic conEn;
 	rand logic [31:0] addr;
 	rand logic [31:0] data;
 	rand logic [ 3:0] be;	
@@ -29,6 +30,8 @@ class cApbMasterWriteSeq extends uvm_sequence#(cApbTransaction);
     $display("Common Seq TEST 2\n"); 
     //coApbTransaction.randomize();
 		assert(coApbTransaction.randomize() with {
+      coApbTransaction.apbSeqEn  == 1;
+      coApbTransaction.apbConEn  == conEn;
 			coApbTransaction.paddr  == addr;
 			coApbTransaction.pwdata == data;
 			coApbTransaction.pstrb  == be;

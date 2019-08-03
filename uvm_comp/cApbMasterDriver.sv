@@ -97,43 +97,38 @@ class cApbMasterDriver extends uvm_driver #(cApbTransaction);
     end
   endtask: get_seq_and_drive
   //
-  int i = 0;
   virtual task convert_seq2apb (cApbTransaction userApbTransaction);
     //Note:
     // 1. psel of cApbTransaction is used an valid flag of an APB packet
     // 2. penable of cApbTransaction is not used
-    //Only get the sequence with userApbTransaction_on = 1
-    //TODO: compile error - userApbTransaction_on khong co trong class coApbTransaction, --> apb_seq_on (fixed ???)
-    if (userApbTransaction.apb_seq_on) begin
+    //Only use a sequence with apbSeqEn = 1
+    if (userApbTransaction.apbSeqEn) begin
       //Initiate a transfer by a rising edge of the APB clock
-      repeat (1) @ (posedge uart_vifApbMaster.pclk);
+      //If this transfer is back-to-back with the previous transfer,
+      //one delay cycle is not inserted
+      if (userApbTransaction.apbConEn == 0) begin
+        repeat (1) @ (posedge uart_vifApbMaster.pclk);
+      end
       //SETUP state of APB protocol
       uart_vifApbMaster.psel         = 1'b1;
-      uart_vifApbMaster.pwrite       = userApbTransaction.pwrite; //Read or Write
+      uart_vifApbMaster.pwrite       = userApbTransaction.pwrite;
       uart_vifApbMaster.paddr[31:0]  = userApbTransaction.paddr[31:0];
       uart_vifApbMaster.pwdata[31:0] = userApbTransaction.pwdata[31:0];
       uart_vifApbMaster.pstrb[3:0]   = userApbTransaction.pstrb[3:0];
-      repeat (1) @ (posedge uart_vifApbMaster.pclk); //Hold one cycle
+      //Hold one cycle before jumping to ACCESS phase of APB protocol
+      repeat (1) @ (posedge uart_vifApbMaster.pclk); 
       //ACCESS state of APB protocol
       uart_vifApbMaster.penable = 1'b1;
-      //PREADY
-      //Check the timeout of APB interface
-      do begin
-        if (i == userApbTransaction.APB_TRANSACTION_TIMEOUT) begin
-          `uvm_error ("[APB_TIMEOUT]", "PREADY is not asserted 1")
-        end
-        repeat (1) @ (posedge uart_vifApbMaster.pclk); //Hold one cycle
-        i = i+1;
-      end while (~uart_vifApbMaster.pready && (i <= userApbTransaction.APB_TRANSACTION_TIMEOUT));
-      //Check READ transaction
+      //Store read data if this is a read transaction
       if (~uart_vifApbMaster.pwrite && uart_vifApbMaster.pready) begin
          userApbTransaction.prdata[31:0] = uart_vifApbMaster.prdata[31:0];
       end
+      //Store pslverr
       userApbTransaction.pslverr = uart_vifApbMaster.pslverr;
-      //
-      if (~userApbTransaction.apb_consecutive_on) begin
-         uart_vifApbMaster.psel    = 1'b0;
-      end
+      //ENABLE phase is hold in one cycle
+      repeat (1) @ (posedge uart_vifApbMaster.pclk);
+      //Release psel and penable
+      uart_vifApbMaster.psel    = 1'b0;
       uart_vifApbMaster.penable = 1'b0;
     end
     else begin
@@ -141,4 +136,5 @@ class cApbMasterDriver extends uvm_driver #(cApbTransaction);
       uart_vifApbMaster.penable = 1'b0;
     end
   endtask: convert_seq2apb
+
 endclass
