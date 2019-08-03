@@ -1,5 +1,10 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
+add wave -noupdate -divider -height 23 <NULL>
+add wave -noupdate /testTop/dut_top/pclk_1
+add wave -noupdate /testTop/dut_top/psel_1
+add wave -noupdate /testTop/dut_top/penable_1
+add wave -noupdate -divider -height 23 {UART TX}
 add wave -noupdate /testTop/dut_top/pclk_0
 add wave -noupdate /testTop/dut_top/preset_n_0
 add wave -noupdate /testTop/dut_top/pwrite_0
@@ -12,6 +17,52 @@ add wave -noupdate /testTop/dut_top/prdata_0
 add wave -noupdate /testTop/dut_top/pready_0
 add wave -noupdate /testTop/dut_top/pslverr_0
 add wave -noupdate /testTop/dut_top/ctrl_if_0
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/tx_nf
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/tx_busy
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/tx_txe
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/rx_ne
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/rx_busy
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/rx_rxf
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/rx_ov
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/rx_pe
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/rx_fe
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/rx_data
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_en
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_tx_en
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_d9
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_ep
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_shift_rx
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_shift_tx
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_txt
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_rxt
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_data_rd
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_data
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/prdata
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/pslverr
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_if
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_tif
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_rif
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_oif
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_pif
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_fif
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ctrl_busy
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/reg_sel
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/reg_we
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/reg_re
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/con_we
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/se_we
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/br_we
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/dt_we
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ie_we
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/con_reg
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/se_reg
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/br_reg
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/ie_reg
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/rx_counter
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/tx_counter
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/err_condition
+add wave -noupdate /testTop/dut_top/uart_0/apb_if/pready
+add wave -noupdate -divider -height 23 {UART RX}
 add wave -noupdate /testTop/dut_top/pclk_1
 add wave -noupdate /testTop/dut_top/preset_n_1
 add wave -noupdate /testTop/dut_top/pwrite_1
@@ -26,13 +77,58 @@ add wave -noupdate /testTop/dut_top/pslverr_1
 add wave -noupdate /testTop/dut_top/ctrl_if_1
 add wave -noupdate /testTop/dut_top/uart_0to1
 add wave -noupdate /testTop/dut_top/uart_1to0
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/tx_nf
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/tx_busy
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/tx_txe
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/rx_ne
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/rx_busy
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/rx_rxf
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/rx_ov
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/rx_pe
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/rx_fe
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/rx_data
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_en
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_tx_en
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_d9
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_ep
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_shift_rx
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_shift_tx
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_txt
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_rxt
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_data_rd
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_data
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/prdata
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/pready
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/pslverr
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_if
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_tif
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_rif
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_oif
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_pif
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_fif
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ctrl_busy
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/reg_sel
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/reg_we
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/reg_re
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/con_we
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/se_we
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/br_we
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/dt_we
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ie_we
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/con_reg
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/se_reg
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/br_reg
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/ie_reg
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/rx_counter
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/tx_counter
+add wave -noupdate /testTop/dut_top/uart_1/apb_if/err_condition
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {55 ns} 0}
+WaveRestoreCursors {{Cursor 1} {85 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 218
 configure wave -valuecolwidth 145
 configure wave -justifyvalue left
-configure wave -signalnamewidth 0
+configure wave -signalnamewidth 1
 configure wave -snapdistance 10
 configure wave -datasetprefix 0
 configure wave -rowmargin 4
@@ -43,4 +139,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {16 ns} {157 ns}
+WaveRestoreZoom {26 ns} {223 ns}
