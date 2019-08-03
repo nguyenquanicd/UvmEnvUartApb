@@ -11,4 +11,4 @@ Verification tool: Questa Sim -64 10.2c - Revision: 2013.07 - Date: Jul 19 2013
 UVM library version: uvm1.2 from Accellera - https://workspace.accellera.org/downloads/standards/uvm
 UART-APB IP core: seft-developed by authors
 
-__END__
+END
