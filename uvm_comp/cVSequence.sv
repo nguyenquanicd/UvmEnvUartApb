@@ -5,6 +5,7 @@
 //Author:  Pham Thanh Tram, Nguyen Sinh Ton, Doan Duc Hoang, Truong Cong Hoang Viet, Nguyen Hung Quan
 //Page:    VLSI Technology
 //--------------------------------------
+
 class cVSequence extends uvm_sequence#(cApbTransaction);
   //Register to Factory
 	`uvm_object_utils(cVSequence)
@@ -14,16 +15,29 @@ class cVSequence extends uvm_sequence#(cApbTransaction);
   // Object must not have veriable "parent" (refer to class cVSequencer)
 	function new (string name = "cVSequence");
 		super.new(name);
-    //WriteSeq = cApbMasterWriteSeq::type_id::create("WriteSeq");
 	endfunction
   //TEST PATTERN is written at here
   task body();
-    $display("cVSequence: %h", WriteSeq);
-    // Content of test pattern.
-    //$display ("%h", WriteSeq.addr);
     #50ns
-    `uvm_do_on(WriteSeq, p_sequencer.coApbMasterAgentTx.coApbMasterSequencer)
-    `uvm_do_on(WriteSeq, p_sequencer.coApbMasterAgentRx.coApbMasterSequencer)
-    $display("cVSequence: %h", WriteSeq.addr);
+    //--------------------------------------------
+    //Setting UART-TX (uart_0)
+    //--------------------------------------------
+    //Set baud rate
+    `ApbWriteTX(32'h00000008,32'h00000000)
+    //Enable UART TX
+    `ApbWriteTX(32'h00000004,32'h00000001)
+    
+    //--------------------------------------------
+    //Setting UART-RX (uart_1)
+    //--------------------------------------------
+    //Set baud rate
+    `ApbWriteRX(32'h00000008,32'h00000001)
+    //Enable UART TX
+    `ApbWriteRX(32'h00000004,32'h00000001)
+    //
+    //Write to DATA register of UART-TX to send data
+    //Note: DATA only is 8-bit LSB
+    `ApbWriteTX(32'h0000000C,32'h00000055)
+    //
   endtask
 endclass

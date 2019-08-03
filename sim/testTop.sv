@@ -11,6 +11,7 @@
 //Include the UVM library
 `include "uvm_pkg.sv"
 `include "uvm_macros.svh"
+`include "../uvm_comp/uMacro.svh"
 //
 //Most TOP module
 //
