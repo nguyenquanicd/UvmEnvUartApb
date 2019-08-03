@@ -33,6 +33,22 @@ Step 4: Choice "NO" when the finish window occurs
 
 Step 5: View the result on Transacript and Waveform
 
+//--------------------------------------
+
+//HOW TO CREATE A TESTCASE?
+
+//--------------------------------------
+
+Step 1: ./uvm_comp/cCommonSequence.sv - Create the common classes to control sequence
+
+Step 2: ./uvm_comp/uMacro.sv - Create a macro which uses the object of a common class
+in "Step 1" to read/write regsiters of UART
+
+Step 3: ./uvm_comp/cVSequence.sv - Call expected macros in "Step 2" to read/write regsiters of UART
+
+NOTE: You cannot use Macro but it help group a function and reduce code lines in cVSequence.sv
+
+
 //Test Github Desktop
 //Viet test Gibhub
 
