@@ -20,6 +20,7 @@ vlog -work work \
   ../uvm_comp/ifDut.sv \
   testTop.sv \
   -timescale 1ns/1ns \
+  -l vlog.log \
   +cover
   
 #---------------------------------------------
@@ -28,6 +29,7 @@ vlog -work work \
 vsim -novopt work.testTop \
   +UVM_TESTNAME=cTest \
   +UVM_VERBOSITY=UVM_LOW \
+  -l vsim.log \
 
 #---------------------------------------------
 #Add some signals to waveform before running
