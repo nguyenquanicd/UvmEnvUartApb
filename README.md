@@ -47,7 +47,7 @@ cd /UvmEnvUartApb/sim/
 
 Step 1: Modify the variable $SIM_TOOL in ./run_qsim.pl
 
-Step 2: ./run_qsim.pl <your testcase link>
+Step 2: ./run_qsim.pl < your testcase link >
 
 Example: ./run_qsim.pl ../pat/trialPat/cVSequence.sv
 
@@ -64,7 +64,7 @@ Step 1: ./uvm_comp/cCommonSequence.sv - Create the common classes to control seq
 Step 2: ./uvm_comp/uMacro.sv - Create a macro which uses the object of a common class
 in "Step 1" to read/write regsiters of UART
 
-Step 3: ./pat/<your testcase name>/cVSequence.sv - Call expected macros in "Step 2" to read/write regsiters of UART
+Step 3: ./pat/< your testcase name >/cVSequence.sv - Call expected macros in "Step 2" to read/write regsiters of UART
 
 Note 1: You cannot use Macro but it help group a function and reduce code lines in cVSequence.sv
 
