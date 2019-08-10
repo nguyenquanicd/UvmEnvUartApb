@@ -9,7 +9,7 @@ class cTest extends uvm_test;
 	`uvm_component_utils(cTest)
   //Declare all instances
 	cEnv coEnv;
-	cVSequence coVSequence; 
+	cVSequence coVSequence;
   //Constructor
 	function new (string name = "cTest", uvm_component parent = null);
 		super.new(name,parent);
@@ -23,16 +23,11 @@ class cTest extends uvm_test;
 	endfunction
   //Run phase
 	task run_phase(uvm_phase phase);
-    $display ("TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 1\n");
 		super.run_phase(phase);
 		phase.raise_objection(this);
-    $display ("TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 2\n");
 		fork
       begin
-        $display ("TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 3\n");
 			  coVSequence.start(coEnv.coVSequencer);
-        //`uvm_info(get_full_name(), "run phase completed.", UVM_LOW)
-        $display ("TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT 4\n");
       end
 			begin
 				#1ms;

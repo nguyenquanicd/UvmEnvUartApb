@@ -29,7 +29,8 @@ vlog -work work \
 vsim -novopt work.testTop \
   +UVM_TESTNAME=cTest \
   +UVM_VERBOSITY=UVM_LOW \
-  -l vsim.log \
+  -coverage \
+  -l vsim.log
 
 #---------------------------------------------
 #Add some signals to waveform before running

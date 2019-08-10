@@ -6,9 +6,6 @@
 //Page:     VLSI Technology
 //--------------------------------------
 //1. Create the new class by extending from uvm_sequence_item
-// vlog -work work -sv cApbTransaction.sv +incdir+C:/questasim64_10.2c/uvm-1.2/src +define+UVM_CMDLINE_NO_DPI +define+UVM_REGEX_NO_DPI +define+UVM_NO_DPI
-//`include "uvm.sv"
-//import uvm_pkg::*;
 class cApbTransaction extends uvm_sequence_item;
   //Parameters are used to control the procedure
   parameter APB_TRANSACTION_TIMEOUT = 32'd100;

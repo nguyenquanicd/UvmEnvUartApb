@@ -12,6 +12,7 @@ class cVSequence extends uvm_sequence#(cApbTransaction);
   `uvm_declare_p_sequencer(cVSequencer)
   
   cApbMasterWriteSeq WriteSeq;
+  cApbMasterReadSeq ReadSeq;
   // Object must not have veriable "parent" (refer to class cVSequencer)
 	function new (string name = "cVSequence");
 		super.new(name);
@@ -26,7 +27,7 @@ class cVSequence extends uvm_sequence#(cApbTransaction);
     `ApbWriteTX(32'h00000008,32'h00000000)
     //Enable UART TX
     `ApbWriteTX(32'h00000004,32'h00000001)
-    
+    `ApbReadTX(32'h00000004,32'h00000001,32'h00000001)
     //--------------------------------------------
     //Setting UART-RX (uart_1)
     //--------------------------------------------
@@ -34,6 +35,7 @@ class cVSequence extends uvm_sequence#(cApbTransaction);
     `ApbWriteRX(32'h00000008,32'h00000001)
     //Enable UART TX
     `ApbWriteRX(32'h00000004,32'h00000001)
+    //`ApbReadRX(32'h00000004, 32'h00000001, 32'hFFFFFFFF) //address, expected value, mask
     //
     //Write to DATA register of UART-TX to send data
     //Note: DATA only is 8-bit LSB

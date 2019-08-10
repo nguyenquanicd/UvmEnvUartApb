@@ -6,7 +6,9 @@
 //Page:    VLSI Technology
 //--------------------------------------
 
-// Need to add other sequences (e.g. cApbMasterReadSeq)
+//--------------------------------------
+//Write sequence
+//--------------------------------------
 class cApbMasterWriteSeq extends uvm_sequence#(cApbTransaction);
 	`uvm_object_utils(cApbMasterWriteSeq)
 	`uvm_declare_p_sequencer(cApbMasterSequencer)
@@ -24,10 +26,7 @@ class cApbMasterWriteSeq extends uvm_sequence#(cApbTransaction);
 	endfunction
 
 	virtual task body();
-   
-  $display("Common Seq TEST 1\n"); 
 		start_item(coApbTransaction);
-    $display("Common Seq TEST 2\n"); 
     //coApbTransaction.randomize();
 		assert(coApbTransaction.randomize() with {
       coApbTransaction.apbSeqEn  == 1;
@@ -37,8 +36,43 @@ class cApbMasterWriteSeq extends uvm_sequence#(cApbTransaction);
 			coApbTransaction.pstrb  == be;
 			coApbTransaction.pwrite == 1;
 		});
-    $display("Common Seq TEST 3\n"); 
-    $display("----%h \n", addr);
 		finish_item(coApbTransaction);
+	endtask
+endclass
+//--------------------------------------
+//Read sequence
+//--------------------------------------
+class cApbMasterReadSeq extends uvm_sequence#(cApbTransaction);
+	`uvm_object_utils(cApbMasterReadSeq)
+	`uvm_declare_p_sequencer(cApbMasterSequencer)
+  
+  cApbTransaction coApbTransaction;
+  
+  rand logic conEn;
+	rand logic [31:0] addr;
+  rand logic [31:0] expectedReadData;
+  rand logic [31:0] mask;
+  logic [31:0] compareResult;
+
+	function new (string name = "cApbMasterReadSeq");
+		super.new(name);
+    coApbTransaction = cApbTransaction::type_id::create("coApbTransaction");
+	endfunction
+
+	virtual task body();
+   
+		start_item(coApbTransaction);
+		assert(coApbTransaction.randomize() with {
+      coApbTransaction.apbSeqEn  == 1;
+      coApbTransaction.apbConEn  == conEn;
+			coApbTransaction.paddr  == addr;
+			coApbTransaction.pwrite == 0;
+		});
+		finish_item(coApbTransaction);
+    //Compare the actual data and the expected data
+    compareResult = (coApbTransaction.prdata ^ expectedReadData) & mask;
+    if (compareResult) begin
+      `uvm_error("READ FAIL", $sformatf("Address: %8h, Expected data: %8h, Actual data: %8h, Mask: %8h", addr, expectedReadData, coApbTransaction.prdata, mask));
+    end
 	endtask
 endclass
