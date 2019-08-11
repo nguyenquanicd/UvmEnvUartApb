@@ -34,6 +34,7 @@ class cEnv extends uvm_env;
 		$cast(coVSequencer.coApbMasterAgentRx, this.coApbMasterAgentRx);
         $cast(coVSequencer.coScoreboard, this.coScoreboard);
     //Connect Monitor and Scoreboard by TLM port
-		coApbMasterAgentTx.coApbMasterMonitor.ap_toScoreboardWrite.connect(coScoreboard.aimp_frmMonitorWrite);
+		coApbMasterAgentTx.coApbMasterMonitor.ap_toScoreboard.connect(coScoreboard.aimp_frmMonitorTX);
+		coApbMasterAgentRx.coApbMasterMonitor.ap_toScoreboard.connect(coScoreboard.aimp_frmMonitorRX);
 	endfunction
 endclass

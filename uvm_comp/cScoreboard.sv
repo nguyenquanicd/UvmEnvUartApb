@@ -10,19 +10,19 @@
 //`include "uvm.sv"
 //import uvm_pkg::*;
 
-`uvm_analysis_imp_decl(_frmMonitorWrite)
-`uvm_analysis_imp_decl(_frmMonitorRead)
+`uvm_analysis_imp_decl(_frmMonitorTX)
+`uvm_analysis_imp_decl(_frmMonitorRX)
 // define the suffix name for declare the unique port and unique function name
 class cScoreboard extends uvm_scoreboard;
 
    `uvm_component_utils(cScoreboard)
 
   // TODO:  #(cScoreboard, cApbTransaction) khong dung, -->  #(cApbTransaction, cScoreboard) (fixed) 
-   uvm_analysis_imp_frmMonitorWrite #(cApbTransaction, cScoreboard) aimp_frmMonitorWrite;
-   uvm_analysis_imp_frmMonitorRead #(cApbTransaction, cScoreboard) aimp_frmMonitorRead;
+   uvm_analysis_imp_frmMonitorTX #(cApbTransaction, cScoreboard) aimp_frmMonitorTX;
+   uvm_analysis_imp_frmMonitorRX #(cApbTransaction, cScoreboard) aimp_frmMonitorRX;
    // define the unique port 
-   //uvm_tlm_fifo #(coApbTransaction) get_frmMonitorWrite;
-   //uvm_tlm_fifo #(coApbTransaction) get_frmMonitorRead;
+   //uvm_tlm_fifo #(coApbTransaction) get_frmMonitorTX;
+   //uvm_tlm_fifo #(coApbTransaction) get_frmMonitorRX;
    // get the transaction from monitor to fifo for calculating
    function new (string name = "cScoreboard", uvm_component parent);
       super.new(name, parent);
@@ -30,28 +30,28 @@ class cScoreboard extends uvm_scoreboard;
    
    function void build_phase (uvm_phase phase);
       super.build_phase(phase);
-	  aimp_frmMonitorWrite = new("aimp_frmMonitorWrite", this);
-	  aimp_frmMonitorRead = new("aimp_frmMonitorRead", this);
+	  aimp_frmMonitorTX = new("aimp_frmMonitorTX", this);
+	  aimp_frmMonitorRX = new("aimp_frmMonitorRX", this);
 	  
-	  //get_frmMonitorWrite = new("get_frmMonitorWrite", this);
-	  //get_frmMonitorRead = new("get_frmMonitorRead", this);
+	  //get_frmMonitorTX = new("get_frmMonitorTX", this);
+	  //get_frmMonitorRX = new("get_frmMonitorRX", this);
 	endfunction
 	
-	function void write_frmMonitorWrite(cApbTransaction TransWrite);
+	function void write_frmMonitorTX(cApbTransaction TransWrite);
 	//`uvm_info(ID, MSG, VERBOSITY)
     //ID: message tag
     //MSG message text
 	    `uvm_info("Get_Trans APB1", $sformatf("Transaction type=%s\n Transaction address=%s\n Transaction data=%s\n ",
 		          TransWrite.pwrite, TransWrite.paddr, TransWrite.pwdata), UVM_DEBUG)
     
-	     //void '(get_frmMonitorWrite.try_put(TransWrite));
+	     //void '(get_frmMonitorTX.try_put(TransWrite));
 	endfunction
 	// define and dump to the screen information about transaction type, data, address of each transactions	
-	function void write_frmMonitorRead(cApbTransaction TransRead);
+	function void write_frmMonitorRX(cApbTransaction TransRead);
 	   `uvm_info("Get_Trans APB1", $sformatf("Transaction type=%s\n Transaction address=%s\n Transaction data=%s\n ",
 		          TransRead.pwrite, TransRead.paddr, TransRead.pwdata), UVM_DEBUG)
         // TODO: khong dung code nay
-        //void '(get_frmMonitorRead.try_put(TransRead));
+        //void '(get_frmMonitorRX.try_put(TransRead));
     endfunction
 	// declare queue for storing the data of each transaction
    byte queue_transaction_1[$];
@@ -64,11 +64,11 @@ class cScoreboard extends uvm_scoreboard;
 //	  forever begin
 //	     `uvm_info("SB", "waiting for receiving the transaction at write side", UVM_DEBUG);
 //		 // TODO: khong dung code nay
-//		 //get_frmMonitorWrite.get(Trans_write_side);
+//		 //get_frmMonitorTX.get(Trans_write_side);
 //		 `uvm_info("SB", "waiting for receiving the transaction at read side", UVM_DEBUG);
 //		 // get transaction from write macro 
 //		 //TODO: Khong dung code nay
-//		 //get_frmMonitorRead.get(Trans_write_side);
+//		 //get_frmMonitorRX.get(Trans_write_side);
 //		 // store the data in queue, if this transaction is write to data register
 //		 if (Trans_write_side.pwrite && Trans_write_side.paddr[4:0] =='h0C) begin
 //		    queue_transaction_1.push_back(Trans_read_side.pwdata);

@@ -1,14 +1,17 @@
-//`include "uvm.sv"
-//import uvm_pkg::*;
-//`include "apb_sequence.sv"
-//`include "dut_interface.sv"
+//--------------------------------------
+//Project: The UVM environemnt for UART (Universal Asynchronous Receiver Transmitter)
+//Function: APB sequencer
+//Author:  Pham Thanh Tram, Nguyen Sinh Ton, Doan Duc Hoang, Truong Cong Hoang Viet, Nguyen Hung Quan
+//Page:    VLSI Technology
+//--------------------------------------
 class cApbMasterMonitor extends uvm_monitor;
 	`uvm_component_utils(cApbMasterMonitor)
 
-	uvm_analysis_port #(cApbTransaction) ap_toScoreboardWrite;
+	uvm_analysis_port #(cApbTransaction) ap_toScoreboard;
     	cApbTransaction coApbTransaction;
 
 	virtual interface ifApbMaster vifApbMaster;
+  virtual interface ifInterrupt vifInterrupt;
 	
 	function new (string name = "cApbMasterMonitor", uvm_component parent = null);
 		super.new(name,parent);
@@ -16,13 +19,17 @@ class cApbMasterMonitor extends uvm_monitor;
 
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
+    //Check the APB connection
 		if(!uvm_config_db#(virtual interface ifApbMaster)::get(this,"","vifApbMaster",vifApbMaster)) begin
 			`uvm_error("cApbMasterDriver","Can't get vifApbMaster!!!")
 		end
-        ap_toScoreboardWrite = new("ap_toScoreboardWrite", this);	
-        coApbTransaction = cApbTransaction::type_id::create("coApbTransaction");
-		
-		ap_toScoreboardWrite = new("toScoreboardWrite", this);
+    //Check the interrupt connection
+    if(!uvm_config_db#(virtual interface ifInterrupt)::get(this,"","vifInterrupt",vifInterrupt)) begin
+			`uvm_error("cVSequencer","Can't get vifInterrupt!!!")
+		end
+    //
+    ap_toScoreboard = new("ap_toScoreboard", this);	
+    coApbTransaction = cApbTransaction::type_id::create("coApbTransaction");
 	endfunction
 
 	virtual task run_phase(uvm_phase phase);
@@ -64,7 +71,7 @@ class cApbMasterMonitor extends uvm_monitor;
 		end
 	end while(vifApbMaster.penable == 0 && vifApbMaster.pready == 0);
 // Viet
-		ap_toScoreboardWrite.write(coApbTransaction);
+		ap_toScoreboard.write(coApbTransaction);
 	end
     endtask
 endclass
