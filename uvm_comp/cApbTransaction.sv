@@ -24,6 +24,7 @@ class cApbTransaction extends uvm_sequence_item;
   rand logic apbSeqEn;
   rand logic apbConEn;
   rand int   apbDelay;
+  int pready = 1;
   //rand logic [1:0] apb_error_inject = 2'b00;
   //Limit the delay value from 0 to 15 time unit
   constraint delay_time {apbDelay inside {[0:15]};};
@@ -36,6 +37,7 @@ class cApbTransaction extends uvm_sequence_item;
     `uvm_field_int(paddr, UVM_ALL_ON)
     `uvm_field_int(pwdata, UVM_ALL_ON)
     `uvm_field_int(pstrb, UVM_ALL_ON)
+	`uvm_field_int(pready, UVM_ALL_ON)
     `uvm_field_int(apbDelay, UVM_ALL_ON)
     `uvm_field_int(apbSeqEn, UVM_ALL_ON)
     `uvm_field_int(apbConEn, UVM_ALL_ON)

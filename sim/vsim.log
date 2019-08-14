@@ -1,0 +1,302 @@
+# vsim +UVM_TESTNAME=cTest +UVM_VERBOSITY=UVM_LOW -coverage -l vsim.log -novopt work.testTop 
+# Loading C:\Users\WINDOW~1\AppData\Local\Temp\Windows 7@ADMIN_dpi_2424\win64_gcc-4.5.0\export_tramp.dll
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.testTop
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.uvm_pkg
+# Loading sv_std.std
+# Loading work.uvm_pkg
+# Loading work.testTop
+# ** Note: (vsim-8785) UVM-aware debugging capabilities will be disabled since no compiled "questa_uvm_pkg" can be found.
+# 
+# This also means that later if you turn on UVM-aware debugging your debug simulations may have
+# 
+# different random seeds from your non-debug simulations.
+# 
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.ifApbMaster
+# Loading work.ifApbMaster
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.ifInterrupt
+# Loading work.ifInterrupt
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.apb_protocol_checker_top
+# Loading work.apb_protocol_checker_top
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.apb_protocol_checker
+# Loading work.apb_protocol_checker
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.uart_protocol_checker_top
+# Loading work.uart_protocol_checker_top
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.uart_protocol_checker
+# Loading work.uart_protocol_checker
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.dut_top
+# Loading work.dut_top
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.uart_top
+# Loading work.uart_top
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.uart_apb_if
+# Loading work.uart_apb_if
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.uart_receiver
+# Loading work.uart_receiver
+# Refreshing D:/uvm_git/UvmEnvUartApb/sim/work.uart_transmitter
+# Loading work.uart_transmitter
+# Compiling C:\Users\WINDOW~1\AppData\Local\Temp\Windows 7@ADMIN_dpi_2424\win64_gcc-4.5.0\exportwrapper.c
+# Loading C:\Users\WINDOW~1\AppData\Local\Temp\Windows 7@ADMIN_dpi_2424\win64_gcc-4.5.0\dpi_auto_compile.dll
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
+# ----------------------------------------------------------------
+# UVM-1.2
+# (C) 2007-2014 Mentor Graphics Corporation
+# (C) 2007-2014 Cadence Design Systems, Inc.
+# (C) 2006-2014 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# (C) 2013-2014 NVIDIA Corporation
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(453) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_DPI defined--getting UVM_TESTNAME directly, without DPI
+# UVM_INFO @ 0: reporter [RNTST] Running test cTest...
+# UVM_INFO ../uvm_comp/cApbMasterDriver.sv(46) @ 0: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver [uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver] Build phase completed.
+# UVM_INFO ../uvm_comp/cApbMasterDriver.sv(46) @ 0: uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver [uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver] Build phase completed.
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_traversal.svh(279) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+# preset_n: 1
+# preset_n: 1
+# [UART_ERROR][                  35][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                  45][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                  49][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# ApbPacket: 030181
+# [UART_ERROR][                  55][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                  63][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                  65][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UVM_DEBUG]-----------come here first
+# UVM_INFO ../uvm_comp/cScoreboard.sv(41) @ 65: uvm_test_top.coEnv.coScoreboard [Transaction from MonitorTX] 
+#  Transaction type =1
+#  Transaction address =00000008
+#  Transaction data =xxxxxxxx
+#  
+# [UART_ERROR][                  75][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [APB_ERROR][                  75] PSEL and PENABLE are asserted 1 at the same time
+# 
+# preset_n: 1
+# [UVM_DEBUG]-----------come here first
+# UVM_INFO ../uvm_comp/cScoreboard.sv(41) @ 75: uvm_test_top.coEnv.coScoreboard [Transaction from MonitorTX] 
+#  Transaction type =1
+#  Transaction address =00000008
+#  Transaction data =xxxxxxxx
+#  
+# ApbPacket: 040181
+# [UART_ERROR][                  77][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                  85][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                  91][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                  95][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UVM_DEBUG]-----------come here first
+# UVM_INFO ../uvm_comp/cScoreboard.sv(41) @ 95: uvm_test_top.coEnv.coScoreboard [Transaction from MonitorTX] 
+#  Transaction type =1
+#  Transaction address =00000004
+#  Transaction data =xxxxxxxx
+#  
+# [UART_ERROR][                 105][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [APB_ERROR][                 105] PSEL and PENABLE are asserted 1 at the same time
+# 
+# [UART_ERROR][                 105][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# preset_n: 1
+# [UVM_DEBUG]-----------come here first
+# UVM_INFO ../uvm_comp/cScoreboard.sv(41) @ 105: uvm_test_top.coEnv.coScoreboard [Transaction from MonitorTX] 
+#  Transaction type =1
+#  Transaction address =00000004
+#  Transaction data =xxxxxxxx
+#  
+# ApbPacket: 050181
+# [UART_ERROR][                 115][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 119][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 125][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UVM_DEBUG]-----------come here first
+# UVM_INFO ../uvm_comp/cScoreboard.sv(41) @ 125: uvm_test_top.coEnv.coScoreboard [Transaction from MonitorTX] 
+#  Transaction type =0
+#  Transaction address =00000004
+#  Transaction data =xxxxxxxx
+#  
+# [UART_ERROR][                 133][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 135][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [APB_ERROR][                 135] PSEL and PENABLE are asserted 1 at the same time
+# 
+# preset_n: 1
+# [UVM_DEBUG]-----------come here first
+# UVM_INFO ../uvm_comp/cScoreboard.sv(41) @ 135: uvm_test_top.coEnv.coScoreboard [Transaction from MonitorTX] 
+#  Transaction type =0
+#  Transaction address =00000004
+#  Transaction data =xxxxxxxx
+#  
+# ApbPacket: 060181
+# [UART_ERROR][                 145][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 147][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 155][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 161][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UVM_DEBUG]-----------come here first
+# UVM_INFO ../uvm_comp/cScoreboard.sv(54) @ 161: uvm_test_top.coEnv.coScoreboard [Transaction from MonitorRX] 
+#  Transaction type=1
+#  Transaction address=00000008
+#  Transaction data=xxxxxxxx
+#  
+# [UART_ERROR][                 165][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 175][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 175][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [APB_ERROR][                 175] PSEL and PENABLE are asserted 1 at the same time
+# 
+# preset_n: 1
+# [UVM_DEBUG]-----------come here first
+# UVM_INFO ../uvm_comp/cScoreboard.sv(54) @ 175: uvm_test_top.coEnv.coScoreboard [Transaction from MonitorRX] 
+#  Transaction type=1
+#  Transaction address=00000008
+#  Transaction data=xxxxxxxx
+#  
+# ApbPacket: 070181
+# [UART_ERROR][                 185][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 189][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0031 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 195][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 203][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0031 cycles
+# -- Actual: 0001 cycles
+# [UVM_DEBUG]-----------come here first
+# UVM_INFO ../uvm_comp/cScoreboard.sv(54) @ 203: uvm_test_top.coEnv.coScoreboard [Transaction from MonitorRX] 
+#  Transaction type=1
+#  Transaction address=00000004
+#  Transaction data=xxxxxxxx
+#  
+# [UART_ERROR][                 205][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 215][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 217][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0031 cycles
+# -- Actual: 0001 cycles
+# [APB_ERROR][                 217] PSEL and PENABLE are asserted 1 at the same time
+# 
+# preset_n: 1
+# [UVM_DEBUG]-----------come here first
+# UVM_INFO ../uvm_comp/cScoreboard.sv(54) @ 217: uvm_test_top.coEnv.coScoreboard [Transaction from MonitorRX] 
+#  Transaction type=1
+#  Transaction address=00000004
+#  Transaction data=xxxxxxxx
+#  
+# ApbPacket: 080181
+# [UART_ERROR][                 225][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 231][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0031 cycles
+# -- Actual: 0001 cycles
+# [UART_ERROR][                 235][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [UVM_DEBUG]-----------come here first
+# UVM_INFO ../uvm_comp/cScoreboard.sv(41) @ 235: uvm_test_top.coEnv.coScoreboard [Transaction from MonitorTX] 
+#  Transaction type =1
+#  Transaction address =0000000c
+#  Transaction data =xxxxxxxx
+#  
+# [UART_ERROR][                 245][uart0_chk] uart_0to1 violated the bit width (baud rate error)
+# -- Expected: 0015 cycles
+# -- Actual: 0001 cycles
+# [APB_ERROR][                 245] PSEL and PENABLE are asserted 1 at the same time
+# 
+# [UART_ERROR][                 245][uart1_chk] uart_1to0 violated the bit width (baud rate error)
+# -- Expected: 0031 cycles
+# -- Actual: 0001 cycles
+# preset_n: 1
+# [UVM_DEBUG]-----------come here first
+# UVM_INFO ../uvm_comp/cScoreboard.sv(41) @ 245: uvm_test_top.coEnv.coScoreboard [Transaction from MonitorTX] 
+#  Transaction type =1
+#  Transaction address =0000000c
+#  Transaction data =xxxxxxxx
+#  
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_objection.svh(1271) @ 245: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../uvm_comp/cScoreboard.sv(77) @ 245: uvm_test_top.coEnv.coScoreboard [SB FINISH] Scoreboard finish
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_report_server.svh(847) @ 245: reporter [UVM/REPORT/SERVER] 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   20
+# UVM_WARNING :    0
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [NO_DPI_TSTNAME]     1
+# [RNTST]     1
+# [SB FINISH]     1
+# [TEST_DONE]     1
+# [Transaction from MonitorRX]     4
+# [Transaction from MonitorTX]     8
+# [UVM/COMP/NAMECHECK]     1
+# [UVM/RELNOTES]     1
+# [uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver]     1
+# [uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver]     1
+# 
+# ** Note: $finish    : C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(517)
+#    Time: 245 ns  Iteration: 79  Instance: /testTop
+# 1
+# Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh line 517
+# Simulation Breakpoint: 1
+# Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh line 517
+# MACRO ./run_sim.do PAUSED at line 43

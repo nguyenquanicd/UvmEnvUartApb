@@ -1,0 +1,21 @@
+QuestaSim-64 vlog 10.2c Compiler 2013.07 Jul 19 2013
+C:\questasim64_10.2c\win64\vlog.exe -reportprogress 300 -work work +define+UVM_CMDLINE_NO_DPI +define+UVM_REGEX_NO_DPI +define+UVM_NO_DPI +define+INTERRUPT_COM +incdir+C:/questasim64_10.2c/uvm-1.2/src -sv ../dut/uart_apb_if.v ../dut/uart_receiver.v ../dut/uart_transmitter.v ../dut/uart_top.v ../dut/dut_top.v ../checker/apb_protocol_checker.sv ../checker/apb_protocol_checker_top.sv ../checker/uart_protocol_checker.sv ../checker/uart_protocol_checker_top.sv ../uvm_comp/ifDut.sv testTop.sv -timescale 1ns/1ns -l vlog.log +cover 
+-- Compiling module uart_apb_if
+-- Compiling module uart_receiver
+-- Compiling module uart_transmitter
+-- Compiling module uart_top
+-- Compiling module dut_top
+-- Compiling module apb_protocol_checker
+-- Compiling module apb_protocol_checker_top
+-- Compiling module uart_protocol_checker
+-- Compiling module uart_protocol_checker_top
+-- Compiling interface ifApbMaster
+-- Compiling interface ifInterrupt
+-- Compiling interface ifUart
+-- Compiling package uvm_pkg
+** Warning: C:/questasim64_10.2c/uvm-1.2/src/base/uvm_event.svh(40): (vlog-2181) Use of a parameterized class uvm_event_callback as a type creates a default specialization.
+-- Compiling module testTop
+-- Importing package uvm_pkg
+
+Top level modules:
+	testTop
