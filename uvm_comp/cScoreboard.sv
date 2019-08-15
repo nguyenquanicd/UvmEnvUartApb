@@ -8,8 +8,8 @@
 
 //--------------------------------------
 
-`uvm_analysis_imp_decl(_frmMonitorWrite)
-`uvm_analysis_imp_decl(_frmMonitorRead)
+`uvm_analysis_imp_decl(_frmMonitorTX)
+`uvm_analysis_imp_decl(_frmMonitorRX)
 
 // define the suffix name for declare the unique port and unique function name
 class cScoreboard extends uvm_scoreboard;
@@ -20,8 +20,8 @@ class cScoreboard extends uvm_scoreboard;
    // declare the variable, take the data oldest storing in queue
    int queue_compare;
    //Implement ports which receive the data sented from Monitor
-   uvm_analysis_imp_frmMonitorWrite #(cApbTransaction, cScoreboard) aimp_frmMonitorWrite;
-   uvm_analysis_imp_frmMonitorRead #(cApbTransaction, cScoreboard) aimp_frmMonitorRead;
+   uvm_analysis_imp_frmMonitorTX #(cApbTransaction, cScoreboard) aimp_frmMonitorTX;
+   uvm_analysis_imp_frmMonitorRX #(cApbTransaction, cScoreboard) aimp_frmMonitorRX;
    //declare the constructor for class, assign the initial value for class
    function new (string name = "cScoreboard", uvm_component parent);
       super.new(name, parent);
@@ -29,16 +29,16 @@ class cScoreboard extends uvm_scoreboard;
    
    function void build_phase (uvm_phase phase);
       super.build_phase(phase);
-	  aimp_frmMonitorWrite = new("aimp_frmMonitorWrite", this); // declare object
-	  aimp_frmMonitorRead = new("aimp_frmMonitorRead", this);
+	  aimp_frmMonitorTX = new("aimp_frmMonitorTX", this); // declare object
+	  aimp_frmMonitorRX = new("aimp_frmMonitorRX", this);
 	endfunction
 	
-	function void write_frmMonitorWrite(cApbTransaction TransWrite);
+	function void write_frmMonitorTX(cApbTransaction TransWrite);
 	//`uvm_info(ID, MSG, VERBOSITY)
     //ID: message tag
     //MSG message text
-	    `uvm_info("Get_Trans APB1", $sformatf("Transaction type=%s\n Transaction address=%s\n Transaction data=%s\n ",
-		          TransWrite.pwrite, TransWrite.paddr, TransWrite.pwdata), UVM_DEBUG)
+	    `uvm_info("Get_Trans TX", $sformatf("\n Transaction type=%h\n Transaction address=%h\n Transaction data=%h\n ",
+		          TransWrite.pwrite, TransWrite.paddr, TransWrite.pwdata), UVM_LOW)
 		// record the data of transaction send to module
 	     if (TransWrite.pwrite &&(TransWrite.paddr[4:0] == 5'h0c)) begin
 		    queue_transaction.push_back(TransWrite.pwdata);
@@ -48,9 +48,9 @@ class cScoreboard extends uvm_scoreboard;
     endfunction
 	
 	// define and dump to the screen information about transaction type, data, address of each transactions	
-	function void write_frmMonitorRead(cApbTransaction TransRead);
-	   `uvm_info("Get_Trans APB1", $sformatf("Transaction type=%s\n Transaction address=%s\n Transaction data=%s\n ",
-		          TransRead.pwrite, TransRead.paddr, TransRead.pwdata), UVM_DEBUG)
+	function void write_frmMonitorRX(cApbTransaction TransRead);
+	   `uvm_info("Get_Trans RX", $sformatf("\n Transaction type=%h\n Transaction address=%h\n Transaction data=%h\n ",
+		          TransRead.pwrite, TransRead.paddr, TransRead.pwdata), UVM_LOW)
 		// Check the data when write and read
         // Match: report "PASS" 		
 		// Mismatch: reprot "FAIL"
