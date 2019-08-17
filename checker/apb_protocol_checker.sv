@@ -58,6 +58,7 @@ module apb_protocol_checker;
   logic [31:0] paddr_pre;
   logic [31:0] pwdata_pre;
   logic [3:0] pstrb_pre;
+  logic pselReg;
   //
   //checker body
   //
@@ -144,11 +145,18 @@ module apb_protocol_checker;
   assign pwdata_or = |pwdata;
   assign prdata_or = |prdata;
   always @ (posedge pclk) begin
+    if (~preset_n)
+      pselReg <= 1'b0;
+    else
+      pselReg <= psel;
+  end
+  always @ (posedge pclk) begin
     if (preset_n) begin
       //
       if (psel) begin
-        //Check 1
-        if (penable) begin
+        //Check 1 - Only check at the first cycle
+        //when psel is changed from 0 to 1
+        if ((~pselReg) & penable) begin
           $display ("[APB_ERROR][%t] PSEL and PENABLE are asserted 1 at the same time\n", $time);
         end
         //Check 2
