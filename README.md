@@ -72,9 +72,21 @@ Note 2: One directory = one testcase
 
 Note 3: Test case directory only contains cVSequence.sv which is your test pattern.
 
+//--------------------------------------
 
-//Test Github Desktop
-//Viet test Gibhub
+//About baud rate
+
+//--------------------------------------
+
+UART-0 (TX) and UART-1 (RX) is assigned 2 different clocks, view sim/testTop.sv.
+
+When you calculate the baudrate, please get the right frequency of UART-0/1.
+
+Baud rate formula: BaudRate = f_UART/(16x(BRG+1))
+
+BRG is the value set in baud rate register.
+
+//--------------------------------------
 
 END
   
