@@ -54,6 +54,6 @@
 `uvm_do_on_with(ReadSeq, p_sequencer.coApbMasterAgentRx.coApbMasterSequencer, { \
                ReadSeq.conEn      == 1'b0; \
                ReadSeq.addr[31:0] == address; \
-               ReadSeq.expectedReadData[31:0] == expectedReadData; \
-               ReadSeq.mask[31:0] == mask; \
+               ReadSeq.expectedReadData[31:0] == expectedData; \
+               ReadSeq.mask[31:0] == uMask; \
                })
