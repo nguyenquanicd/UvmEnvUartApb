@@ -87,15 +87,17 @@ Baud rate formula: BaudRate = f_UART/(16x(BRG+1))
 BRG is the value set in baud rate register.
 
 //--------------------------------------
+
 //About coverage
 
 //--------------------------------------
-After each simulation, 
-coverage is generated automatically,
+
+After each simulation, coverage is generated automatically,
 report is saved to sim/index.html 
 and a copy is stored in folder cov/ for merging coverage.
 Using command "run_qsim.pl MERGE_COVERAGE" 
 to merge coverage and generate report sim/index.html from this new database
+
 //--------------------------------------
 
 END
