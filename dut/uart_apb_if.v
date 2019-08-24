@@ -210,7 +210,7 @@ module uart_apb_if (/*AUTOARG*/
   //pslverr
   assign err_condition = (paddr[1:0] != 2'b00) //Address is not aligned 32-bit
                        | (paddr[15:0] > 16'h0018)   //Address is reserved
-                       | (~&pstrb[3:0]) //Do not support pstrb[3:0] != 4'b1111
+                       | (~&pstrb[3:0] & pwrite & reg_sel) //Do not support pstrb[3:0] != 4'b1111
                        ;
   always @ (posedge pclk) begin
     if (~preset_n) pslverr <= `DELAY 1'b0;
