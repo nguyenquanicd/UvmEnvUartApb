@@ -54,14 +54,14 @@ class cApbMasterMonitor extends uvm_monitor;
     //coApbTransaction.pwrite = vifApbMaster.pwrite;
 	//do begin
         repeat(1) @(posedge vifApbMaster.pclk) begin
-        $display("VietHT UVM ----- DEBUG ---- 1 --- penable %1h --- pready %1h --- time: %t",vifApbMaster.penable,vifApbMaster.pready,$time);
+        //$display("VietHT UVM ----- DEBUG ---- 1 --- penable %1h --- pready %1h --- time: %t",vifApbMaster.penable,vifApbMaster.pready,$time);
 
              coApbTransaction.paddr[31:0] =  vifApbMaster.paddr[31:0];
              coApbTransaction.pstrb[3:0] = vifApbMaster.pstrb[3:0];
              coApbTransaction.pwrite = vifApbMaster.pwrite;
              
              if(vifApbMaster.penable == 1 && vifApbMaster.pready == 1) begin
-            $display("VietHT UVM ----- DEBUG ---- 2 --- penable %1h --- pready %1h --- time: %t",vifApbMaster.penable,vifApbMaster.pready,$time);
+            //$display("VietHT UVM ----- DEBUG ---- 2 --- penable %1h --- pready %1h --- time: %t",vifApbMaster.penable,vifApbMaster.pready,$time);
                 if(coApbTransaction.pwrite == 1) begin
                 coApbTransaction.pwdata[31:0] =  vifApbMaster.pwdata[31:0];
                 end
