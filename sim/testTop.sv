@@ -6,8 +6,8 @@
 //Author:  Pham Thanh Tram, Nguyen Sinh Ton, Doan Duc Hoang, Truong Cong Hoang Viet, Nguyen Hung Quan
 //Page:    VLSI Technology
 //--------------------------------------
-`define UART0_CLOCK_CYCLE 10
-`define UART1_CLOCK_CYCLE 14
+`define UART0_CLOCK_CYCLE 50
+`define UART1_CLOCK_CYCLE 86
 //Include the UVM library
 `include "uvm_pkg.sv"
 `include "uvm_macros.svh"
