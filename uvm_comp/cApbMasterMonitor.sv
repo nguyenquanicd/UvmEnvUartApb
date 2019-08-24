@@ -9,12 +9,25 @@ class cApbMasterMonitor extends uvm_monitor;
 
 	uvm_analysis_port #(cApbTransaction) ap_toScoreboard;
     	cApbTransaction coApbTransaction;
-
+		
+		//-----------------------
+		// Just for test coverage
+		bit a1;
+		covergroup ABC;
+		option.per_instance = 1;
+		coverpoint a1;
+		endgroup
+		//-----------------------
 	virtual interface ifApbMaster vifApbMaster;
   virtual interface ifInterrupt vifInterrupt;
 	
 	function new (string name = "cApbMasterMonitor", uvm_component parent = null);
 		super.new(name,parent);
+		//-----------------------
+		// Just for test coverage
+		ABC = new;
+		ABC.sample();
+		//-----------------------
 	endfunction
 
 	function void build_phase(uvm_phase phase);

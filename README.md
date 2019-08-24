@@ -47,9 +47,9 @@ cd /UvmEnvUartApb/sim/
 
 Step 1: Modify the variable $SIM_TOOL in ./run_qsim.pl
 
-Step 2: ./run_qsim.pl < your testcase link >
+Step 2: ./run_qsim.pl < your testcase name >
 
-Example: ./run_qsim.pl ../pat/trialPat/cVSequence.sv
+Example: ./run_qsim.pl trialPat
 
 Note: Script run_qsim.pl will copy "../pat/trialPat/cVSequence.sv" to /UvmEnvUartApb/uvm_comp/ before executing
 
@@ -86,6 +86,16 @@ Baud rate formula: BaudRate = f_UART/(16x(BRG+1))
 
 BRG is the value set in baud rate register.
 
+//--------------------------------------
+//About coverage
+
+//--------------------------------------
+After each simulation, 
+coverage is generated automatically,
+report is saved to sim/index.html 
+and a copy is stored in folder cov/ for merging coverage.
+Using command "run_qsim.pl MERGE_COVERAGE" 
+to merge coverage and generate report sim/index.html from this new database
 //--------------------------------------
 
 END
