@@ -30,7 +30,7 @@ class cTest extends uvm_test;
 			  coVSequence.start(coEnv.coVSequencer);
       end
 			begin
-				#1ms;
+				#10s;
 				`uvm_error("TEST SEQUENCE", "TIMEOUT!!!")
 			end
 		join_any

@@ -24,22 +24,32 @@ class cVSequence extends uvm_sequence#(cApbTransaction);
     //Setting UART-TX (uart_0)
     //--------------------------------------------
     //Set baud rate
-    `ApbWriteTX(32'h00000008,32'h00000000)
-    //Enable UART TX
+    `ApbWriteTX(32'h00000008,32'h00000006) //200000
+    `ApbReadTX(32'h00000008,32'h00000006,32'hffffffff)
+    //Enable
     `ApbWriteTX(32'h00000004,32'h00000001)
     `ApbReadTX(32'h00000004,32'h00000001,32'h00000001)
     //--------------------------------------------
     //Setting UART-RX (uart_1)
     //--------------------------------------------
     //Set baud rate
-    `ApbWriteRX(32'h00000008,32'h00000001)
-    //Enable UART TX
+    `ApbWriteRX(32'h00000008,32'h0000003) //200000
+    `ApbReadRX(32'h00000008,32'h00000003,32'hffffffff)
+    //Enable
     `ApbWriteRX(32'h00000004,32'h00000001)
-    //`ApbReadRX(32'h00000004, 32'h00000001, 32'hFFFFFFFF) //address, expected value, mask
+    `ApbReadRX(32'h00000004,32'h00000001,32'h00000001)
     //
     //Write to DATA register of UART-TX to send data
     //Note: DATA only is 8-bit LSB
     `ApbWriteTX(32'h0000000C,32'h00000055)
-    //
+    //Ccheck DATA on UART RX
+    while (1) begin
+      `ApbReadRX(32'h00000004,32'h00000040,32'h00000000)
+      if (ReadSeq.coApbTransaction.prdata[6]) begin
+        `ApbReadRX(32'h0000000C,32'h00000055,32'hffffffff)
+        #100ns
+        $stop;
+      end
+    end
   endtask
 endclass

@@ -123,8 +123,8 @@ module uart_protocol_checker;
     if (~preset_n) uart_net_sync[1:0] <= 2'b11;
     else uart_net_sync[1:0] <= {uart_net_sync[0], uart_net};
   end
-  assign uart_net_rising  = uart_net_sync[0] & ~uart_net;
-  assign uart_net_falling = uart_net_sync[0] & uart_net;
+  assign uart_net_rising  = ~uart_net_sync[0] & uart_net;
+  assign uart_net_falling = uart_net_sync[0] & ~uart_net;
   //Select the number of bits of UART frame
   // Parity:    START - 8 DATA - 1 Parity - 1 STOP
   // No parity: START - 8 DATA - 1 STOP
