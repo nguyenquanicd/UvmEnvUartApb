@@ -41,3 +41,8 @@ do add_wave.do
 #Run
 #---------------------------------------------
 run 1000ns
+
+#---------------------------------------------
+#Report the coverage result
+#---------------------------------------------
+coverage report -file {D:/20.Project/3.Github/New folder/UvmEnvUartApb/sim/cov_report.txt} -byfile -assert -directive -cvg -codeAll
