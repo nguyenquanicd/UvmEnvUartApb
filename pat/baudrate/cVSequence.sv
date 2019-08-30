@@ -24,25 +24,40 @@ class cVSequence extends uvm_sequence#(cApbTransaction);
     //Setting UART-TX (uart_0)
     //--------------------------------------------
     //Set baud rate
-    `ApbWriteTX(32'h00000008,32'h00000040) 
-   
-    //Enable UART TX
-    `ApbWriteTX(32'h00000004,32'h00000001) // Enable
-    
+    `ApbWriteTX(32'h00000008,32'h00000082) //200000
+    `ApbReadTX(32'h00000008,32'h00000082,32'hffffffff)
+    //Enable
+    `ApbWriteTX(32'h00000004,32'h00000001)
+    `ApbReadTX(32'h00000004,32'h00000001,32'h00000001)
     //--------------------------------------------
     //Setting UART-RX (uart_1)
     //--------------------------------------------
     //Set baud rate
-    `ApbWriteRX(32'h00000008,32'h0000005A) 
-    
-    //Enable UART TX
-    `ApbWriteRX(32'h00000004,32'h00000001) 
-
-    //`ApbReadRX(32'h00000004, 32'h00000001, 32'hFFFFFFFF) //address, expected value, mask
+    `ApbWriteRX(32'h00000008,32'h0000004B) //200000
+    `ApbReadRX(32'h00000008,32'h00000004B,32'hffffffff)
+    //Enable
+    `ApbWriteRX(32'h00000004,32'h00000001)
+    `ApbReadRX(32'h00000004,32'h00000001,32'h00000001)
     //
     //Write to DATA register of UART-TX to send data
     //Note: DATA only is 8-bit LSB
-    `ApbWriteTX(32'h0000000C,32'h00000050)
-    `ApbReadRX(32'h0000000C,32'h00000050,32'hFFFFFFFF)
+    //`ApbWriteTX(32'h0000000C,32'h00000000)
+    //Ccheck DATA on UART RX
+	for (int i = 0 ; i < 8; i= i++) begin
+	  `ApbWriteTX(32'h0000000C,32'h00000000)
+      while (1) begin
+      `ApbReadRX(32'h00000004,32'h00000040,32'h00000000)
+      if (ReadSeq.coApbTransaction.prdata[6]) begin
+        `ApbReadRX(32'h0000000C,32'h00000000,32'hffffffff)
+        #100ns
+        break;
+      end
+	  if (i=7) begin
+	  #100ns
+	  $stop;
+	  end
+      end
+
+	end
   endtask
 endclass
