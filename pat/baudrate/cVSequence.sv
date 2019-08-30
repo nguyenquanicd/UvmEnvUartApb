@@ -52,7 +52,7 @@ class cVSequence extends uvm_sequence#(cApbTransaction);
         #100ns
         break;
       end
-	  if (i=7) begin
+	      if (i==7) begin
 	  #100ns
 	  $stop;
 	  end
