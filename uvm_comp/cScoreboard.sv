@@ -59,7 +59,8 @@ class cScoreboard extends uvm_scoreboard;
 		   if (TransRead.prdata == queue_compare) begin  
 		      `uvm_info("SB PASS","The transaction write and read data from register are successful ", UVM_DEBUG)
 			   // Delete the oldest data which recorded in queue.
-		       queue_transaction.delete(0);
+			   //TODO
+		      // queue_transaction.delete(0);
 		   end else begin
 		    `uvm_info("SB ERROR", "The transaction write and read data from register have been failed ", UVM_DEBUG)
 		   end
