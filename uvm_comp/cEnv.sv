@@ -36,5 +36,8 @@ class cEnv extends uvm_env;
     //Connect Monitor and Scoreboard by TLM port
 		coApbMasterAgentTx.coApbMasterMonitor.ap_toScoreboard.connect(coScoreboard.aimp_frmMonitorTX);
 		coApbMasterAgentRx.coApbMasterMonitor.ap_toScoreboard.connect(coScoreboard.aimp_frmMonitorRX);
+		coApbMasterAgentTx.coApbMasterMonitor.preset_n_signal_2scbr.connect(coScoreboard.aimp_resetfrmTX);
+		//coApbMasterAgentRx.coApbMasterMonitor.preset_n_signal_2scbr.connect(coScoreboard.aimp_resetfrmRX);
+		
 	endfunction
 endclass
