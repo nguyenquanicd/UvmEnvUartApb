@@ -13,6 +13,7 @@ class cVSequence extends uvm_sequence#(cApbTransaction);
   
   cApbMasterWriteSeq WriteSeq;
   cApbMasterReadSeq ReadSeq;
+  cApbMasterWriteSeqNotCmpr ReadSeqWoCmpr;
   // Object must not have veriable "parent" (refer to class cVSequencer)
 	function new (string name = "cVSequence");
 		super.new(name);
@@ -24,26 +25,34 @@ class cVSequence extends uvm_sequence#(cApbTransaction);
     //Setting UART-TX (uart_0)
     //--------------------------------------------
     //Set baud rate
-    `ApbWriteTX(32'h00000008,32'h00000001) // parity bit is 0
-    `ApbReadTX(32'h00000008,32'h00000001,32'h000000FF)
+    `ApbWriteTX(32'h00000008,32'h00000082) // parity bit is 0
+    `ApbReadTX(32'h00000008,32'h00000082,32'h000000FF)
     //Enable UART TX
     `ApbWriteTX(32'h00000004,32'h00000003) // parity bit is 0
-    `ApbReadTX(32'h00000004,32'h00000003,32'h000000FF)
+    `ApbReadTX(32'h00000004,32'h00000023,32'h000000FF)
     //--------------------------------------------
     //Setting UART-RX (uart_1)
     //--------------------------------------------
     //Set baud rate
-    `ApbWriteRX(32'h00000008,32'h00000001) // parity bit is 0
-    `ApbReadRX(32'h00000008,32'h00000001,32'h000000FF)
+    `ApbWriteRX(32'h00000008,32'h0000004B) // parity bit is 0
+    `ApbReadRX(32'h00000008,32'h0000004B,32'h000000FF)
     //Enable UART TX
     `ApbWriteRX(32'h00000004,32'h00000003) // parity bit is 0
-    `ApbReadRX(32'h00000004,32'h00000003,32'h000000FF)
+    `ApbReadRX(32'h00000004,32'h00000023,32'h000000FF)
     //`ApbReadRX(32'h00000004, 32'h00000001, 32'hFFFFFFFF) //address, expected value, mask
     //
     //Write to DATA register of UART-TX to send data
     //Note: DATA only is 8-bit LSB
     `ApbWriteTX(32'h0000000C,32'h00000000)
-    #50ns
-    `ApbReadRX(32'h0000000C,32'h00000000)
+    `ApbReadRX(32'h00000004,32'h000000A3,32'h000000ff)
+    while(1) begin
+        `ApbReadWoCmprRX(32'h00000004)
+        if(ReadSeqWoCmpr.coApbTransaction.prdata[6]) begin
+            `ApbReadRX(32'h0000000C,32'h00000000,32'h000000ff)
+            #100
+            $stop;
+        end
+    end
+
   endtask
 endclass
