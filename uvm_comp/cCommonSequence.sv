@@ -76,3 +76,36 @@ class cApbMasterReadSeq extends uvm_sequence#(cApbTransaction);
     end
 	endtask
 endclass
+
+
+//--------------------------------------
+//Read sequence without compare
+//VietHT
+//--------------------------------------
+class cApbMasterWriteSeqNotCmpr extends uvm_sequence#(cApbTransaction);
+	`uvm_object_utils(cApbMasterWriteSeqNotCmpr)
+	`uvm_declare_p_sequencer(cApbMasterSequencer)
+  
+  cApbTransaction coApbTransaction;
+  
+    rand logic conEn;
+	rand logic [31:0] addr;
+	rand logic [31:0] data;
+    rand logic [31:0] mask;	
+
+	function new (string name = "cApbMasterWriteSeqNotCmpr");
+		super.new(name);
+    coApbTransaction = cApbTransaction::type_id::create("coApbTransaction");
+	endfunction
+
+	virtual task body();
+		start_item(coApbTransaction);
+		assert(coApbTransaction.randomize() with {
+            coApbTransaction.apbSeqEn  == 1;
+            coApbTransaction.apbConEn  == conEn;
+			coApbTransaction.paddr  == addr;
+			coApbTransaction.pwrite == 0;
+		});
+		finish_item(coApbTransaction);
+	endtask
+endclass

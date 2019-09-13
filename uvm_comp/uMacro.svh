@@ -57,3 +57,29 @@
                ReadSeq.expectedReadData[31:0] == expectedData; \
                ReadSeq.mask[31:0] == uMask; \
                })
+               
+//--------------------------------------
+//Write random "value" to "address" of a register of UART-RX
+// address - 32-bit read address
+// VietHTs
+//--------------------------------------
+
+`define ApbWriteRandTX(address) \
+`uvm_do_on_with(WriteSeq, p_sequencer.coApbMasterAgentTx.coApbMasterSequencer, { \
+               WriteSeq.conEn      == 1'b0; \
+               WriteSeq.addr[31:0] == address; \
+               WriteSeq.be[3:0]    == 4'b1111; \
+               })
+               
+//--------------------------------------
+//Read "value" from "address" of a register of UART-RX
+// address - 32-bit read address
+// VietHTs
+//--------------------------------------
+               
+`define ApbReadWoCmprRX(address) \
+`uvm_do_on_with(ReadSeqWoCmpr, p_sequencer.coApbMasterAgentRx.coApbMasterSequencer, { \
+               ReadSeqWoCmpr.conEn      == 1'b0; \
+               ReadSeqWoCmpr.addr[31:0] == address; \
+               })
+
