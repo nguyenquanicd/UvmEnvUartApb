@@ -57,18 +57,18 @@ class cScoreboard extends uvm_scoreboard;
       //Store transmit data to queue
       //-------------------------------------
 		  // Update the enable status
-		  if (TransOnTX.pwrite && (TransOnTX.paddr[31:0] == 32'h04)) begin
+		  if (TransOnTX.pwrite && (TransOnTX.paddr[15:0] == 16'h0004)) begin
 		      uartEnTX = TransOnTX.pwdata[0];
 		  end
       // Store transmit data to queues when UART is enabled
       // Only store 8 LSB bits, other MSB bits are mapped to 0
-		  if (TransOnTX.pwrite && (TransOnTX.paddr[31:0] == 32'h0C) && uartEnTX) begin
+		  else if (TransOnTX.pwrite && (TransOnTX.paddr[15:0] == 16'h000C) && uartEnTX) begin
 		      queueTransTX.push_back(TransOnTX.pwdata & 32'h0000_00ff);
 		  end
       //-------------------------------------
       //Compare received data on UART-TX with queueTransRX on UART-RX
       //-------------------------------------
-      if (~TransOnTX.pwrite && (TransOnTX.paddr[31:0] == 32'hC) && uartEnTX) begin
+      else if (~TransOnTX.pwrite && (TransOnTX.paddr[15:0] == 16'h000C) && uartEnTX) begin
 				//Get the transmitted data from queueCompRX
         queueCompRX = queueTransRX[0];
         //Compare the read data on UART-TX and transmitted data from UART-RX
@@ -84,7 +84,7 @@ class cScoreboard extends uvm_scoreboard;
 				  queueTransRX.delete(0);
         end
 		  end
-		end
+    end
     else begin
       //Delete all entries of queue if reset is acting
       queueTransTX.delete();
@@ -99,18 +99,18 @@ class cScoreboard extends uvm_scoreboard;
       //Store transmit data to queue
       //-------------------------------------
 		  // Update the enable status
-		  if (TransOnRX.pwrite && (TransOnRX.paddr[31:0] == 32'h04)) begin
+		  if (TransOnRX.pwrite && (TransOnRX.paddr[15:0] == 16'h04)) begin
 		      uartEnRX = TransOnRX.pwdata[0];
 		  end
       // Store transmit data to queues when UART is enabled
       // Only store 8 LSB bits, other MSB bits are mapped to 0
-		  if (TransOnRX.pwrite && (TransOnRX.paddr[31:0] == 32'h0C) && uartEnRX) begin
+		  else if (TransOnRX.pwrite && (TransOnRX.paddr[15:0] == 16'h0C) && uartEnRX) begin
 		      queueTransRX.push_back(TransOnRX.pwdata & 32'h0000_00ff);
 		  end
       //-------------------------------------
       //Compare received data on UART-RX with queueTransTX on UART-TX
       //-------------------------------------
-      if (~TransOnRX.pwrite && (TransOnRX.paddr[31:0] == 32'hC) && uartEnRX) begin
+      else if (~TransOnRX.pwrite && (TransOnRX.paddr[15:0] == 16'hC) && uartEnRX) begin
 				//Get the transmitted data from queueCompTX
         queueCompRX = queueTransTX[0];
         //Compare the read data on UART-RX and transmitted data from UART-TX
@@ -127,6 +127,12 @@ class cScoreboard extends uvm_scoreboard;
         end
 		  end
 	  end
+    else begin
+      //Delete all entries of queue if reset is acting
+      queueTransRX.delete();
+      //Clear UART-TX enable
+		  uartEnRX = 1'b0;
+		end
   endfunction
   //
 	function void report_phase(uvm_phase phase);

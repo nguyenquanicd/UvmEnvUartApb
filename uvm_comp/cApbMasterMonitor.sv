@@ -44,9 +44,12 @@ class cApbMasterMonitor extends uvm_monitor;
 		  collect_data();
       //Setect reset status and send to Scoreboard
 		  detect_reset();
-      //Monitor the interrupt ports and warning if they are toggle
+      //Monitor interrupt enable
+      monitor_ifEn ();
+      //Detect interrupt
       detect_intf ();
 		join
+    
   endtask: run_phase	
 	//On each clock, detect a valid transaction
   // -> get the valid transaction
@@ -60,12 +63,8 @@ class cApbMasterMonitor extends uvm_monitor;
           coApbTransaction.paddr[31:0] =  vifApbMaster.paddr[31:0];
           coApbTransaction.pstrb[3:0] = vifApbMaster.pstrb[3:0];
           coApbTransaction.pwrite = vifApbMaster.pwrite;
-          if(vifApbMaster.pwrite == 1) begin
-            coApbTransaction.pwdata[31:0] =  vifApbMaster.pwdata[31:0];
-          end
-          else begin
-            coApbTransaction.prdata[31:0] =  vifApbMaster.prdata[31:0];
-          end
+          coApbTransaction.pwdata[31:0] =  vifApbMaster.pwdata[31:0];
+          coApbTransaction.prdata[31:0] =  vifApbMaster.prdata[31:0];
           //Send the transaction to analysis port which is connected to Scoreboard
           ap_toScoreboard.write(coApbTransaction);
         end
@@ -83,33 +82,115 @@ class cApbMasterMonitor extends uvm_monitor;
 		end
 	endtask
   //Detect interrupt toggle
+  logic [4:0] ifEn = 5'd0;
+  `ifdef INTERRUPT_COM
+    logic ifSta = 1'b0;
+  `else
+    logic [4:0] ifSta = 5'd0;
+  `endif
+  virtual task monitor_ifEn ();
+    //-------------------------------------
+    // Update interrupt enable
+    //-------------------------------------
+    while (1) begin
+      @(posedge vifApbMaster.pclk);
+      #1ps
+      if (vifApbMaster.psel && vifApbMaster.penable 
+      && vifApbMaster.pready && vifApbMaster.pwrite 
+      && (vifApbMaster.paddr[15:0] == 16'h0010)) begin
+        //Use "<=" to make sure only check after enable
+		    ifEn[4:0] <= vifApbMaster.pwdata[4:0];
+		  end
+    end
+  endtask
+  //
   virtual task detect_intf ();
     while(1) begin
       @(posedge vifApbMaster.pclk);
       #1ps
+      //-------------------------------------
+      // Check the interrupt signals
+      //-------------------------------------
       `ifdef INTERRUPT_COM
         if (vifInterrupt.ctrl_if) begin
-          `uvm_warning("cApbMasterMonitor", "INTERRUPT is toggled")
+          if (~ifSta) begin
+            if (~|ifEn[4:0]) begin
+              `uvm_error("cApbMasterMonitor", "INTERRUPT is toggled but NOT have any interrupt enable")
+            end
+            else begin
+              `uvm_warning("cApbMasterMonitor", $sformatf("INTERRUPT is toggled when interrupt enable is %5b", ifEn[4:0]))
+            end
+          ifSta = 1'b1;
+          end
+        end
+        else begin
+          ifSta = 1'b0;
         end
       `else
         if (vifInterrupt.ctrl_tif) begin
-          `uvm_warning("cApbMasterMonitor", "Transmit interrupt is toggled because TXFIFO is empty")
+          if (~ifSta[0]) begin
+            if (~ifEn[0]) begin
+              `uvm_error("cApbMasterMonitor", "Transmit interrupt is toggled but it is not enable")
+            end
+            else
+              `uvm_warning("cApbMasterMonitor", "Transmit interrupt is toggled because TXFIFO is empty")
+          end
+          ifSta[0] = 1'b1;
+        end
+        else begin
+          ifSta[0] = 1'b0;
         end
         //
         if (vifInterrupt.ctrl_rif) begin
-          `uvm_warning("cApbMasterMonitor", "Receiver interrupt is toggled because RXFIFO is full")
+          if (~ifSta[1]) begin
+            if (~ifEn[1])
+              `uvm_error("cApbMasterMonitor", "Receiver interrupt is toggled but it is not enable")
+            else
+              `uvm_warning("cApbMasterMonitor", "Receiver interrupt is toggled because RXFIFO is full")
+          end
+          ifSta[1] = 1'b1;
         end
-        //
-        if (vifInterrupt.ctrl_pif) begin
-          `uvm_warning("cApbMasterMonitor", "Parity interrupt is toggled because parity bit is wrong")
+        else begin
+          ifSta[1] = 1'b0;
         end
         //
         if (vifInterrupt.ctrl_oif) begin
-          `uvm_warning("cApbMasterMonitor", "Overflow interrupt is toggled because RXFIFO is full but a new UART frame is received")
+          if (~ifSta[2]) begin
+            if (~ifEn[2])
+              `uvm_error("cApbMasterMonitor", "Overflow interrupt is toggled but it is not enable")
+            else
+              `uvm_warning("cApbMasterMonitor", "Overflow interrupt is toggled because RXFIFO is full but a new UART frame is received")
+          end
+          ifSta[2] = 1'b1;
+        end
+        else begin
+          ifSta[2] = 1'b0;
+        end
+        //
+        if (vifInterrupt.ctrl_pif) begin
+          if (~ifSta[3]) begin
+            if (~ifEn[3])
+              `uvm_error("cApbMasterMonitor", "Parity interrupt is toggled but it is not enable")
+            else
+              `uvm_warning("cApbMasterMonitor", "Parity interrupt is toggled because parity bit is wrong")
+          end
+          ifSta[3] = 1'b1;
+        end
+        else begin
+          ifSta[3] = 1'b0;
         end
         //
         if (vifInterrupt.ctrl_fif) begin
-          `uvm_warning("cApbMasterMonitor", "Frame error interrupt is toggled because STOP bit is 0")
+          if (~ifSta[4]) begin
+            if (~ifEn[4])
+              `uvm_error("cApbMasterMonitor", "Frame error interrupt is toggled but it is not enable")
+            else
+              `uvm_warning("cApbMasterMonitor", "Frame error interrupt is toggled because STOP bit is 0")
+          end
+          ifSta[4] = 1'b1;
+        end
+        else begin
+          ifSta[4] = 1'b0;
         end
       `endif
     end

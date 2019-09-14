@@ -188,9 +188,9 @@ module uart_receiver (
   //Inputs of FIFO
   assign wr_rx_fifo = rx_complete;
   assign rd_rx_fifo = ctrl_data_rd;
-  assign data_in[7:0] = (ctrl_d9)? rx_shift_reg[7:0] : rx_shift_reg[8:1] ;
+  assign data_in[7:0] = ctrl_d9? rx_shift_reg[7:0] : rx_shift_reg[8:1] ;
   assign frame_error = ~rx_shift_reg[9];
-  assign parity_error = (ctrl_ep)? (^rx_shift_reg[8:0]) : ~(^rx_shift_reg[8:0]);
+  assign parity_error = ctrl_d9? (ctrl_ep? (^rx_shift_reg[8:0]) : ~(^rx_shift_reg[8:0])) :1'b0;
   assign data_in_rx_fifo[9:0] = {frame_error, parity_error, data_in[7:0]};
   //Outputs of FIFO
   assign rx_ne = ~rx_fifo_empty;
@@ -239,11 +239,14 @@ module uart_receiver (
   assign rx_fifo_ptr_compare = rx_wptr - rx_rptr;
   //Overload flag of RXFIFO
   always@ (posedge pclk) begin
-  	casez ({(wr_rx_fifo & rx_fifo_full), rd_rx_fifo})
-  		2'b?1 : rx_fifo_ov <= `DELAY 1'b0;
-  		2'b10 : rx_fifo_ov <= `DELAY 1'b1;
-  		default : rx_fifo_ov <= `DELAY rx_fifo_ov;
-  	endcase
+    if (~preset_n)
+      rx_fifo_ov <= `DELAY 1'b0;
+    else begin
+  	  casez ({(wr_rx_fifo & rx_fifo_full), rd_rx_fifo})
+  	  	2'b?1 : rx_fifo_ov <= `DELAY 1'b0;
+  	  	2'b10 : rx_fifo_ov <= `DELAY 1'b1;
+  	  endcase
+    end
   end
   //Full, empty flag of RXFIFO
   assign lsb_rxfifo_equal = (rx_wptr[3:0] == rx_rptr[3:0]);
