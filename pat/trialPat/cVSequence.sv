@@ -41,14 +41,21 @@ class cVSequence extends uvm_sequence#(cApbTransaction);
     //
     //Write to DATA register of UART-TX to send data
     //Note: DATA only is 8-bit LSB
-    `ApbWriteTX(32'h0000000C,32'h00000055)
-    //Ccheck DATA on UART RX
+    for (int i = 0; i < 18; i++) begin
+      `ApbWriteTX(32'h0000000C,i)
+      `ApbWriteRX(32'h0000000C,~i)
+    end
+    //Check DATA on UART RX
     while (1) begin
+      #100
       `ApbReadRX(32'h00000004,32'h00000040,32'h00000000)
       if (ReadSeq.coApbTransaction.prdata[6]) begin
-        `ApbReadRX(32'h0000000C,32'h00000055,32'hffffffff)
-        #100ns
-        $stop;
+        `ApbReadRX(32'h0000000C,32'h00000055,32'h00000000)
+      end
+      //
+      `ApbReadTX(32'h00000004,32'h00000040,32'h00000000)
+      if (ReadSeq.coApbTransaction.prdata[6]) begin
+        `ApbReadTX(32'h0000000C,32'h00000055,32'h00000000)
       end
     end
   endtask

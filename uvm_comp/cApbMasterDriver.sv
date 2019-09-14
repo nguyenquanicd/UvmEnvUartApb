@@ -83,11 +83,9 @@ class cApbMasterDriver extends uvm_driver #(cApbTransaction);
     forever begin
       @ (posedge uart_vifApbMaster.preset_n);
       while (uart_vifApbMaster.preset_n) begin
-        $display ("preset_n: %b", uart_vifApbMaster.preset_n);
         //if (uart_vifApbMaster.preset_n) begin
           //The seq_item_port.get_next_item is used to get items from the sequencer
           seq_item_port.get_next_item(ApbPacket);
-          $display ("ApbPacket: %h", ApbPacket);
           //req is assigned to convert_seq2apb to drive the APB interface
           convert_seq2apb(ApbPacket);
           //Report the done execution

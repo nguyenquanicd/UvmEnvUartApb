@@ -64,13 +64,13 @@ module uart_protocol_checker;
   //
   //
   //
-  always @ (posedge pclk) begin
-    if (preset_n) begin
-      if (uart_net == 1'bx || uart_net == 1'bz) begin
-        $display ("[UART_ERROR][%t][%s] %s is x or z\n", $time, INST_NAME, INST_NET);
-      end
-    end
-  end
+  //always @ (posedge pclk) begin
+  //  if (preset_n) begin
+  //    if (uart_net == 1'bx || uart_net == 1'bz) begin
+  //      $display ("[UART_ERROR][%t][%s] %s is x or z\n", $time, INST_NAME, INST_NET);
+  //    end
+  //  end
+  //end
   //
   //Detect the user settings
   //
@@ -152,8 +152,8 @@ module uart_protocol_checker;
       count_result[12:0] <= width_count[12:0];
   end
   assign baud_rate_error = (width_count[12:0] % bit_width[12:0]) != 0; 
-  always @ (posedge pclk) begin
-    if (preset_n & baud_rate_error)
-      $display ("[UART_ERROR][%t][%s] %s violated the bit width (baud rate error)\n-- Expected: %04d cycles\n-- Actual: %04d cycles", $time, INST_NAME, INST_NET, bit_width, width_count);
-  end
+ //always @ (posedge pclk) begin
+ //  if (preset_n & baud_rate_error)
+ //    $display ("[UART_ERROR][%t][%s] %s violated the bit width (baud rate error)\n-- Expected: %04d cycles\n-- Actual: %04d cycles", $time, INST_NAME, INST_NET, bit_width, width_count);
+ //end
 endmodule

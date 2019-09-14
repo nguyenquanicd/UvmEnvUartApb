@@ -30,8 +30,10 @@ class cTest extends uvm_test;
 			  coVSequence.start(coEnv.coVSequencer);
       end
 			begin
-				#10s;
-				`uvm_error("TEST SEQUENCE", "TIMEOUT!!!")
+				#1ms;
+        $display("#---------------------------------");
+				`uvm_warning("CTEST WARNING", "TIMEOUT TIMEOUT TIMEOUT TIMEOUT TIMEOUT!!!")
+        $display("#---------------------------------");
 			end
 		join_any
 		disable fork;
