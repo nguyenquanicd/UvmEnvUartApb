@@ -25,7 +25,7 @@ class cScoreboard extends uvm_scoreboard;
    bit uartEnRX;
    //Reset flag
    bit rst_flg;
-   //Implement ports which receive the data sented from Monitor
+   //Implement ports which receive the data sent from Monitor
    uvm_analysis_imp_frmMonitorTX #(cApbTransaction, cScoreboard) aimp_frmMonitorTX;
    uvm_analysis_imp_frmMonitorRX #(cApbTransaction, cScoreboard) aimp_frmMonitorRX;
    uvm_analysis_imp_resetfrmTX #(logic, cScoreboard) aimp_resetfrmTX;
@@ -83,6 +83,9 @@ class cScoreboard extends uvm_scoreboard;
 		    if (queueTransRX.size() != 0) begin 
 				  queueTransRX.delete(0);
         end
+        else begin
+          `uvm_warning("SB UNFINISH-TX", "Read data but do NOT have any transmited data");
+        end
 		  end
     end
     else begin
@@ -124,6 +127,9 @@ class cScoreboard extends uvm_scoreboard;
         //Delete queue
 		    if (queueTransTX.size() != 0) begin 
 				  queueTransTX.delete(0);
+        end
+        else begin
+          `uvm_warning("SB UNFINISH-RX", "Read data but do NOT have any transmitted data");
         end
 		  end
 	  end

@@ -31,7 +31,7 @@ class cApbMasterMonitor extends uvm_monitor;
     if(!uvm_config_db#(virtual interface ifInterrupt)::get(this,"","vifInterrupt",vifInterrupt)) begin
 			`uvm_error("cVSequencer","Can NOT get vifInterrupt!!!")
 		end
-    //Create onjects and analysis ports
+    //Create objects and analysis ports
     ap_toScoreboard = new("ap_toScoreboard", this);	
 	  preset_toScoreboard = new("preset_toScoreboard", this);
     coApbTransaction = cApbTransaction::type_id::create("coApbTransaction",this);
