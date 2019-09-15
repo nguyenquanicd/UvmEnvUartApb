@@ -62,6 +62,7 @@ class cVSequence extends uvm_sequence#(cApbTransaction);
     for(int i = 0; i <= 3; i++) begin
         `ApbWriteRandTX(32'h0000000C)
          ExpDataArray[i] = WriteSeq.data;
+         $display("ExpDataArray[%d] cpr %h",i,WriteSeq.data);
          end
         //`ApbReadRX(32'h00000004,32'h000000A3,32'h000000ff)
     while(1) begin
@@ -74,6 +75,7 @@ class cVSequence extends uvm_sequence#(cApbTransaction);
      
     for (int i = 0; i <= 3; i++) begin
      `ApbReadRX(32'h0000000C,ExpDataArray[i],32'h000000ff)
+     $display("ExpDataArray[%d] cpr ---- %h",i,ExpDataArray[i]);
      #100ns;
     end 
          
