@@ -1,0 +1,483 @@
+# vsim +UVM_TESTNAME=cTest +UVM_VERBOSITY=UVM_LOW -coverage -l vsim.log -novopt work.testTop 
+# Loading C:\Users\woasi\AppData\Local\Temp\woasi@DESKTOP-65T0NUS_dpi_11032\win64_gcc-4.5.0\export_tramp.dll
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.testTop
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uvm_pkg
+# Loading sv_std.std
+# Loading work.uvm_pkg
+# Loading work.testTop
+# ** Note: (vsim-8785) UVM-aware debugging capabilities will be disabled since no compiled "questa_uvm_pkg" can be found.
+# 
+# This also means that later if you turn on UVM-aware debugging your debug simulations may have
+# 
+# different random seeds from your non-debug simulations.
+# 
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.ifApbMaster
+# Loading work.ifApbMaster
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.ifInterrupt
+# Loading work.ifInterrupt
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.apb_protocol_checker_top
+# Loading work.apb_protocol_checker_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.apb_protocol_checker
+# Loading work.apb_protocol_checker
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_protocol_checker_top
+# Loading work.uart_protocol_checker_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_protocol_checker
+# Loading work.uart_protocol_checker
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.dut_top
+# Loading work.dut_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_top
+# Loading work.uart_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_apb_if
+# Loading work.uart_apb_if
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_receiver
+# Loading work.uart_receiver
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_transmitter
+# Loading work.uart_transmitter
+# Compiling C:\Users\woasi\AppData\Local\Temp\woasi@DESKTOP-65T0NUS_dpi_11032\win64_gcc-4.5.0\exportwrapper.c
+# Loading C:\Users\woasi\AppData\Local\Temp\woasi@DESKTOP-65T0NUS_dpi_11032\win64_gcc-4.5.0\dpi_auto_compile.dll
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: Windows 7  Hostname: ADMIN  ProcessID: 2424
+# 
+#           Attempting to use alternate WLF file "./wlftw07df2".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftw07df2
+# 
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
+# ----------------------------------------------------------------
+# UVM-1.2
+# (C) 2007-2014 Mentor Graphics Corporation
+# (C) 2007-2014 Cadence Design Systems, Inc.
+# (C) 2006-2014 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# (C) 2013-2014 NVIDIA Corporation
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(453) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_DPI defined--getting UVM_TESTNAME directly, without DPI
+# UVM_INFO @ 0: reporter [RNTST] Running test cTest...
+# UVM_INFO ../uvm_comp/cApbMasterDriver.sv(46) @ 0: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver [uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver] Build phase completed.
+# UVM_INFO ../uvm_comp/cApbMasterDriver.sv(46) @ 0: uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver [uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver] Build phase completed.
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_traversal.svh(279) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+# UVM_INFO ../uvm_comp/cScoreboard.sv(47) @ 25: uvm_test_top.coEnv.coScoreboard [SB RESET] [                  25] preset_n signal is acting
+# UVM_INFO ../uvm_comp/cScoreboard.sv(47) @ 75: uvm_test_top.coEnv.coScoreboard [SB RESET] [                  75] preset_n signal is acting
+# UVM_INFO ../uvm_comp/cScoreboard.sv(47) @ 125: uvm_test_top.coEnv.coScoreboard [SB RESET] [                 125] preset_n signal is acting
+#---------------------------------
+# UVM_WARNING ../uvm_comp/cTest.sv(35) @ 1000000: uvm_test_top [CTEST WARNING] TIMEOUT TIMEOUT TIMEOUT TIMEOUT TIMEOUT!!!
+#---------------------------------
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_objection.svh(1271) @ 1000000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_WARNING ../uvm_comp/cScoreboard.sv(148) @ 1000000: uvm_test_top.coEnv.coScoreboard [SB UNFINISH-TX] UART-TX: Queue is not empty, pending data:           1
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_report_server.svh(847) @ 1000000: reporter [UVM/REPORT/SERVER] 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   10
+# UVM_WARNING :    2
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [CTEST WARNING]     1
+# [NO_DPI_TSTNAME]     1
+# [RNTST]     1
+# [SB RESET]     3
+# [SB UNFINISH-TX]     1
+# [TEST_DONE]     1
+# [UVM/COMP/NAMECHECK]     1
+# [UVM/RELNOTES]     1
+# [uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver]     1
+# [uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver]     1
+# 
+# ** Note: $finish    : C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(517)
+#    Time: 1 ms  Iteration: 68  Instance: /testTop
+# 1
+# Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh line 517
+# Simulation Breakpoint: 1
+# Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh line 517
+# MACRO ./run_sim.do PAUSED at line 43
+do run_sim.do
+# QuestaSim-64 vlog 10.2c Compiler 2013.07 Jul 19 2013
+# -- Compiling module uart_apb_if
+# -- Compiling module uart_receiver
+# -- Compiling module uart_transmitter
+# -- Compiling module uart_top
+# -- Compiling module dut_top
+# -- Compiling module apb_protocol_checker
+# -- Compiling module apb_protocol_checker_top
+# -- Compiling module uart_protocol_checker
+# -- Compiling module uart_protocol_checker_top
+# -- Compiling interface ifApbMaster
+# -- Compiling interface ifInterrupt
+# -- Compiling interface ifUart
+# -- Compiling package uvm_pkg
+# ** Warning: C:/questasim64_10.2c/uvm-1.2/src/base/uvm_event.svh(40): (vlog-2181) Use of a parameterized class uvm_event_callback as a type creates a default specialization.
+# 
+# -- Compiling module testTop
+# -- Importing package uvm_pkg
+# 
+# Top level modules:
+# 	testTop
+# vsim +UVM_TESTNAME=cTest +UVM_VERBOSITY=UVM_LOW -coverage -l vsim.log -novopt work.testTop 
+# Loading C:\Users\woasi\AppData\Local\Temp\woasi@DESKTOP-65T0NUS_dpi_8984\win64_gcc-4.5.0\export_tramp.dll
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.testTop
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uvm_pkg
+# Loading sv_std.std
+# Loading work.uvm_pkg
+# Loading work.testTop
+# ** Note: (vsim-8785) UVM-aware debugging capabilities will be disabled since no compiled "questa_uvm_pkg" can be found.
+# 
+# This also means that later if you turn on UVM-aware debugging your debug simulations may have
+# 
+# different random seeds from your non-debug simulations.
+# 
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.ifApbMaster
+# Loading work.ifApbMaster
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.ifInterrupt
+# Loading work.ifInterrupt
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.apb_protocol_checker_top
+# Loading work.apb_protocol_checker_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.apb_protocol_checker
+# Loading work.apb_protocol_checker
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_protocol_checker_top
+# Loading work.uart_protocol_checker_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_protocol_checker
+# Loading work.uart_protocol_checker
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.dut_top
+# Loading work.dut_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_top
+# Loading work.uart_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_apb_if
+# Loading work.uart_apb_if
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_receiver
+# Loading work.uart_receiver
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_transmitter
+# Loading work.uart_transmitter
+# Compiling C:\Users\woasi\AppData\Local\Temp\woasi@DESKTOP-65T0NUS_dpi_8984\win64_gcc-4.5.0\exportwrapper.c
+# Loading C:\Users\woasi\AppData\Local\Temp\woasi@DESKTOP-65T0NUS_dpi_8984\win64_gcc-4.5.0\dpi_auto_compile.dll
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: Windows 7  Hostname: ADMIN  ProcessID: 2424
+# 
+#           Attempting to use alternate WLF file "./wlftw7jr1t".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftw7jr1t
+# 
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
+# ----------------------------------------------------------------
+# UVM-1.2
+# (C) 2007-2014 Mentor Graphics Corporation
+# (C) 2007-2014 Cadence Design Systems, Inc.
+# (C) 2006-2014 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# (C) 2013-2014 NVIDIA Corporation
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(453) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_DPI defined--getting UVM_TESTNAME directly, without DPI
+# UVM_INFO @ 0: reporter [RNTST] Running test cTest...
+# UVM_INFO ../uvm_comp/cApbMasterDriver.sv(46) @ 0: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver [uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver] Build phase completed.
+# UVM_INFO ../uvm_comp/cApbMasterDriver.sv(46) @ 0: uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver [uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver] Build phase completed.
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_traversal.svh(279) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+# UVM_INFO ../uvm_comp/cScoreboard.sv(47) @ 25: uvm_test_top.coEnv.coScoreboard [SB RESET] [                  25] preset_n signal is acting
+# UVM_INFO ../uvm_comp/cScoreboard.sv(47) @ 75: uvm_test_top.coEnv.coScoreboard [SB RESET] [                  75] preset_n signal is acting
+# UVM_INFO ../uvm_comp/cScoreboard.sv(47) @ 125: uvm_test_top.coEnv.coScoreboard [SB RESET] [                 125] preset_n signal is acting
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 95847: uvm_test_top.coEnv.coScoreboard [SB INFO] [               95847] SUCCESS on UART-RX: transfer data = 00, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 183481: uvm_test_top.coEnv.coScoreboard [SB INFO] [              183481] SUCCESS on UART-RX: transfer data = 00, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 271803: uvm_test_top.coEnv.coScoreboard [SB INFO] [              271803] SUCCESS on UART-RX: transfer data = 00, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 359437: uvm_test_top.coEnv.coScoreboard [SB INFO] [              359437] SUCCESS on UART-RX: transfer data = 00, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 447759: uvm_test_top.coEnv.coScoreboard [SB INFO] [              447759] SUCCESS on UART-RX: transfer data = 00, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 535909: uvm_test_top.coEnv.coScoreboard [SB INFO] [              535909] SUCCESS on UART-RX: transfer data = 00, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 623801: uvm_test_top.coEnv.coScoreboard [SB INFO] [              623801] SUCCESS on UART-RX: transfer data = 00, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 711951: uvm_test_top.coEnv.coScoreboard [SB INFO] [              711951] SUCCESS on UART-RX: transfer data = 00, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 799585: uvm_test_top.coEnv.coScoreboard [SB INFO] [              799585] SUCCESS on UART-RX: transfer data = ff, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 887907: uvm_test_top.coEnv.coScoreboard [SB INFO] [              887907] SUCCESS on UART-RX: transfer data = ff, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 975541: uvm_test_top.coEnv.coScoreboard [SB INFO] [              975541] SUCCESS on UART-RX: transfer data = ff, queueTransTX size =           1
+#---------------------------------
+# UVM_WARNING ../uvm_comp/cTest.sv(35) @ 1000000: uvm_test_top [CTEST WARNING] TIMEOUT TIMEOUT TIMEOUT TIMEOUT TIMEOUT!!!
+#---------------------------------
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_objection.svh(1271) @ 1000000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_WARNING ../uvm_comp/cScoreboard.sv(148) @ 1000000: uvm_test_top.coEnv.coScoreboard [SB UNFINISH-TX] UART-TX: Queue is not empty, pending data:           1
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_report_server.svh(847) @ 1000000: reporter [UVM/REPORT/SERVER] 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   21
+# UVM_WARNING :    2
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [CTEST WARNING]     1
+# [NO_DPI_TSTNAME]     1
+# [RNTST]     1
+# [SB INFO]    11
+# [SB RESET]     3
+# [SB UNFINISH-TX]     1
+# [TEST_DONE]     1
+# [UVM/COMP/NAMECHECK]     1
+# [UVM/RELNOTES]     1
+# [uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver]     1
+# [uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver]     1
+# 
+# ** Note: $finish    : C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(517)
+#    Time: 1 ms  Iteration: 68  Instance: /testTop
+# 1
+# Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh line 517
+# Simulation Breakpoint: 1
+# Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh line 517
+# MACRO ./run_sim.do PAUSED at line 43
+do run_sim.do
+# QuestaSim-64 vlog 10.2c Compiler 2013.07 Jul 19 2013
+# -- Compiling module uart_apb_if
+# -- Compiling module uart_receiver
+# -- Compiling module uart_transmitter
+# -- Compiling module uart_top
+# -- Compiling module dut_top
+# -- Compiling module apb_protocol_checker
+# -- Compiling module apb_protocol_checker_top
+# -- Compiling module uart_protocol_checker
+# -- Compiling module uart_protocol_checker_top
+# -- Compiling interface ifApbMaster
+# -- Compiling interface ifInterrupt
+# -- Compiling interface ifUart
+# -- Compiling package uvm_pkg
+# ** Warning: C:/questasim64_10.2c/uvm-1.2/src/base/uvm_event.svh(40): (vlog-2181) Use of a parameterized class uvm_event_callback as a type creates a default specialization.
+# 
+# -- Compiling module testTop
+# -- Importing package uvm_pkg
+# 
+# Top level modules:
+# 	testTop
+# vsim +UVM_TESTNAME=cTest +UVM_VERBOSITY=UVM_LOW -coverage -l vsim.log -novopt work.testTop 
+# Loading C:\Users\woasi\AppData\Local\Temp\woasi@DESKTOP-65T0NUS_dpi_6428\win64_gcc-4.5.0\export_tramp.dll
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.testTop
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uvm_pkg
+# Loading sv_std.std
+# Loading work.uvm_pkg
+# Loading work.testTop
+# ** Note: (vsim-8785) UVM-aware debugging capabilities will be disabled since no compiled "questa_uvm_pkg" can be found.
+# 
+# This also means that later if you turn on UVM-aware debugging your debug simulations may have
+# 
+# different random seeds from your non-debug simulations.
+# 
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.ifApbMaster
+# Loading work.ifApbMaster
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.ifInterrupt
+# Loading work.ifInterrupt
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.apb_protocol_checker_top
+# Loading work.apb_protocol_checker_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.apb_protocol_checker
+# Loading work.apb_protocol_checker
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_protocol_checker_top
+# Loading work.uart_protocol_checker_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_protocol_checker
+# Loading work.uart_protocol_checker
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.dut_top
+# Loading work.dut_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_top
+# Loading work.uart_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_apb_if
+# Loading work.uart_apb_if
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_receiver
+# Loading work.uart_receiver
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_transmitter
+# Loading work.uart_transmitter
+# Compiling C:\Users\woasi\AppData\Local\Temp\woasi@DESKTOP-65T0NUS_dpi_6428\win64_gcc-4.5.0\exportwrapper.c
+# Loading C:\Users\woasi\AppData\Local\Temp\woasi@DESKTOP-65T0NUS_dpi_6428\win64_gcc-4.5.0\dpi_auto_compile.dll
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: Windows 7  Hostname: ADMIN  ProcessID: 2424
+# 
+#           Attempting to use alternate WLF file "./wlftfbmzmc".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftfbmzmc
+# 
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
+# ----------------------------------------------------------------
+# UVM-1.2
+# (C) 2007-2014 Mentor Graphics Corporation
+# (C) 2007-2014 Cadence Design Systems, Inc.
+# (C) 2006-2014 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# (C) 2013-2014 NVIDIA Corporation
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(453) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_DPI defined--getting UVM_TESTNAME directly, without DPI
+# UVM_INFO @ 0: reporter [RNTST] Running test cTest...
+# UVM_INFO ../uvm_comp/cApbMasterDriver.sv(46) @ 0: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver [uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver] Build phase completed.
+# UVM_INFO ../uvm_comp/cApbMasterDriver.sv(46) @ 0: uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver [uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver] Build phase completed.
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_traversal.svh(279) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+# UVM_INFO ../uvm_comp/cScoreboard.sv(47) @ 25: uvm_test_top.coEnv.coScoreboard [SB RESET] [                  25] preset_n signal is acting
+# UVM_INFO ../uvm_comp/cScoreboard.sv(47) @ 75: uvm_test_top.coEnv.coScoreboard [SB RESET] [                  75] preset_n signal is acting
+# UVM_INFO ../uvm_comp/cScoreboard.sv(47) @ 125: uvm_test_top.coEnv.coScoreboard [SB RESET] [                 125] preset_n signal is acting
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 17415: uvm_test_top.coEnv.coScoreboard [SB ERROR] [               17415] FAIL on UART-RX: read data = e0, expected data =00, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 17501: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000000, Actual data: 000000e0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 34099: uvm_test_top.coEnv.coScoreboard [SB ERROR] [               34099] FAIL on UART-RX: read data = f0, expected data =00, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 34185: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000000, Actual data: 000000f0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 50783: uvm_test_top.coEnv.coScoreboard [SB ERROR] [               50783] FAIL on UART-RX: read data = f0, expected data =00, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 50869: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000000, Actual data: 000000f0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 67639: uvm_test_top.coEnv.coScoreboard [SB ERROR] [               67639] FAIL on UART-RX: read data = f0, expected data =00, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 67725: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000000, Actual data: 000000f0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 84323: uvm_test_top.coEnv.coScoreboard [SB ERROR] [               84323] FAIL on UART-RX: read data = f0, expected data =00, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 84409: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000000, Actual data: 000000f0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 101179: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              101179] FAIL on UART-RX: read data = f0, expected data =00, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 101265: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000000, Actual data: 000000f0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 118035: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              118035] FAIL on UART-RX: read data = f0, expected data =00, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 118121: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000000, Actual data: 000000f0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 134891: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              134891] FAIL on UART-RX: read data = f0, expected data =00, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 134977: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000000, Actual data: 000000f0, Mask: 000000ff
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 158025: uvm_test_top.coEnv.coScoreboard [SB INFO] [              158025] SUCCESS on UART-RX: transfer data = ff, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 181331: uvm_test_top.coEnv.coScoreboard [SB INFO] [              181331] SUCCESS on UART-RX: transfer data = ff, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 204379: uvm_test_top.coEnv.coScoreboard [SB INFO] [              204379] SUCCESS on UART-RX: transfer data = ff, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 227685: uvm_test_top.coEnv.coScoreboard [SB INFO] [              227685] SUCCESS on UART-RX: transfer data = ff, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 250991: uvm_test_top.coEnv.coScoreboard [SB INFO] [              250991] SUCCESS on UART-RX: transfer data = ff, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 274125: uvm_test_top.coEnv.coScoreboard [SB INFO] [              274125] SUCCESS on UART-RX: transfer data = ff, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 297173: uvm_test_top.coEnv.coScoreboard [SB INFO] [              297173] SUCCESS on UART-RX: transfer data = ff, queueTransTX size =           1
+# UVM_INFO ../uvm_comp/cScoreboard.sv(122) @ 320479: uvm_test_top.coEnv.coScoreboard [SB INFO] [              320479] SUCCESS on UART-RX: transfer data = ff, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 337335: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              337335] FAIL on UART-RX: read data = f0, expected data =00, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 337421: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000000, Actual data: 000000f0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 354707: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              354707] FAIL on UART-RX: read data = f8, expected data =01, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 354793: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000001, Actual data: 000000f8, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 371649: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              371649] FAIL on UART-RX: read data = f0, expected data =02, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 371735: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000002, Actual data: 000000f0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 389881: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              389881] FAIL on UART-RX: read data = f8, expected data =03, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 389967: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000003, Actual data: 000000f8, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 405963: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              405963] FAIL on UART-RX: read data = f1, expected data =04, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 406049: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000004, Actual data: 000000f1, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 423679: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              423679] FAIL on UART-RX: read data = f0, expected data =05, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 423765: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000005, Actual data: 000000f0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 440535: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              440535] FAIL on UART-RX: read data = f1, expected data =06, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 440621: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000006, Actual data: 000000f1, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 459455: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              459455] FAIL on UART-RX: read data = fc, expected data =07, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 459541: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000007, Actual data: 000000fc, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 475623: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              475623] FAIL on UART-RX: read data = f0, expected data =08, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 475709: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000008, Actual data: 000000f0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 493253: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              493253] FAIL on UART-RX: read data = f1, expected data =09, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 493339: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000009, Actual data: 000000f1, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 509937: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              509937] FAIL on UART-RX: read data = f0, expected data =0a, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 510023: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 0000000a, Actual data: 000000f0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 528341: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              528341] FAIL on UART-RX: read data = f8, expected data =0b, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 528427: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 0000000b, Actual data: 000000f8, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 545283: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              545283] FAIL on UART-RX: read data = f1, expected data =0c, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 545369: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 0000000c, Actual data: 000000f1, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 562913: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              562913] FAIL on UART-RX: read data = f9, expected data =0d, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 562999: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 0000000d, Actual data: 000000f9, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 579597: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              579597] FAIL on UART-RX: read data = f1, expected data =0e, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 579683: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 0000000e, Actual data: 000000f1, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 599635: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              599635] FAIL on UART-RX: read data = fc, expected data =0f, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 599721: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 0000000f, Actual data: 000000fc, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 616491: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              616491] FAIL on UART-RX: read data = f2, expected data =10, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 616577: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000010, Actual data: 000000f2, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 633949: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              633949] FAIL on UART-RX: read data = f0, expected data =11, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 634035: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000011, Actual data: 000000f0, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 650891: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              650891] FAIL on UART-RX: read data = f2, expected data =12, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 650977: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000012, Actual data: 000000f2, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 669381: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              669381] FAIL on UART-RX: read data = f9, expected data =13, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 669467: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000013, Actual data: 000000f9, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 685979: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              685979] FAIL on UART-RX: read data = f3, expected data =14, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 686065: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000014, Actual data: 000000f3, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 703609: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              703609] FAIL on UART-RX: read data = f8, expected data =15, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 703695: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000015, Actual data: 000000f8, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 720551: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              720551] FAIL on UART-RX: read data = f3, expected data =16, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 720637: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000016, Actual data: 000000f3, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 739557: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              739557] FAIL on UART-RX: read data = f8, expected data =17, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 739643: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000017, Actual data: 000000f8, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 756499: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              756499] FAIL on UART-RX: read data = f2, expected data =18, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 756585: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000018, Actual data: 000000f2, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 773957: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              773957] FAIL on UART-RX: read data = f9, expected data =19, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 774043: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000019, Actual data: 000000f9, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 790899: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              790899] FAIL on UART-RX: read data = f2, expected data =1a, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 790985: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 0000001a, Actual data: 000000f2, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 809389: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              809389] FAIL on UART-RX: read data = f9, expected data =1b, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 809475: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 0000001b, Actual data: 000000f9, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 826073: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              826073] FAIL on UART-RX: read data = f3, expected data =1c, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 826159: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 0000001c, Actual data: 000000f3, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 843703: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              843703] FAIL on UART-RX: read data = f1, expected data =1d, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 843789: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 0000001d, Actual data: 000000f1, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 860387: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              860387] FAIL on UART-RX: read data = f3, expected data =1e, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 860473: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 0000001e, Actual data: 000000f3, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 881371: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              881371] FAIL on UART-RX: read data = fe, expected data =1f, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 881457: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 0000001f, Actual data: 000000fe, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 897969: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              897969] FAIL on UART-RX: read data = f4, expected data =20, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 898055: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000020, Actual data: 000000f4, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 915599: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              915599] FAIL on UART-RX: read data = f2, expected data =21, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 915685: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000021, Actual data: 000000f2, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 932541: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              932541] FAIL on UART-RX: read data = f4, expected data =22, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 932627: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000022, Actual data: 000000f4, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 950773: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              950773] FAIL on UART-RX: read data = f8, expected data =23, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 950859: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000023, Actual data: 000000f8, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 967629: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              967629] FAIL on UART-RX: read data = f5, expected data =24, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 967715: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000024, Actual data: 000000f5, Mask: 000000ff
+# UVM_ERROR ../uvm_comp/cScoreboard.sv(125) @ 985259: uvm_test_top.coEnv.coScoreboard [SB ERROR] [              985259] FAIL on UART-RX: read data = fa, expected data =25, queueTransTX size =           1
+# UVM_ERROR ../uvm_comp/cCommonSequence.sv(75) @ 985345: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterSequencer@@coVSequence.ReadSeq [READ FAIL] Address: 0000000c, Expected data: 00000025, Actual data: 000000fa, Mask: 000000ff
+#---------------------------------
+# UVM_WARNING ../uvm_comp/cTest.sv(35) @ 1000000: uvm_test_top [CTEST WARNING] TIMEOUT TIMEOUT TIMEOUT TIMEOUT TIMEOUT!!!
+#---------------------------------
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_objection.svh(1271) @ 1000000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_WARNING ../uvm_comp/cScoreboard.sv(148) @ 1000000: uvm_test_top.coEnv.coScoreboard [SB UNFINISH-TX] UART-TX: Queue is not empty, pending data:           1
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_report_server.svh(847) @ 1000000: reporter [UVM/REPORT/SERVER] 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   18
+# UVM_WARNING :    2
+# UVM_ERROR :   92
+# UVM_FATAL :    0
+# ** Report counts by id
+# [CTEST WARNING]     1
+# [NO_DPI_TSTNAME]     1
+# [READ FAIL]    46
+# [RNTST]     1
+# [SB ERROR]    46
+# [SB INFO]     8
+# [SB RESET]     3
+# [SB UNFINISH-TX]     1
+# [TEST_DONE]     1
+# [UVM/COMP/NAMECHECK]     1
+# [UVM/RELNOTES]     1
+# [uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver]     1
+# [uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver]     1
+# 
+# ** Note: $finish    : C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(517)
+#    Time: 1 ms  Iteration: 68  Instance: /testTop
+# 1
+# Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh line 517
+# Simulation Breakpoint: 1
+# Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh line 517
+# MACRO ./run_sim.do PAUSED at line 43

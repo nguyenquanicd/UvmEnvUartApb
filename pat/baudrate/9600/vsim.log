@@ -1,0 +1,108 @@
+# vsim +UVM_TESTNAME=cTest +UVM_VERBOSITY=UVM_LOW -coverage -l vsim.log -novopt work.testTop 
+# Loading C:\Users\woasi\AppData\Local\Temp\woasi@DESKTOP-65T0NUS_dpi_11032\win64_gcc-4.5.0\export_tramp.dll
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.testTop
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uvm_pkg
+# Loading sv_std.std
+# Loading work.uvm_pkg
+# Loading work.testTop
+# ** Note: (vsim-8785) UVM-aware debugging capabilities will be disabled since no compiled "questa_uvm_pkg" can be found.
+# 
+# This also means that later if you turn on UVM-aware debugging your debug simulations may have
+# 
+# different random seeds from your non-debug simulations.
+# 
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.ifApbMaster
+# Loading work.ifApbMaster
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.ifInterrupt
+# Loading work.ifInterrupt
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.apb_protocol_checker_top
+# Loading work.apb_protocol_checker_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.apb_protocol_checker
+# Loading work.apb_protocol_checker
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_protocol_checker_top
+# Loading work.uart_protocol_checker_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_protocol_checker
+# Loading work.uart_protocol_checker
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.dut_top
+# Loading work.dut_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_top
+# Loading work.uart_top
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_apb_if
+# Loading work.uart_apb_if
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_receiver
+# Loading work.uart_receiver
+# Refreshing E:/01_UVM_sef_investigate/UVM/UvmEnvUartApb-master/sim/work.uart_transmitter
+# Loading work.uart_transmitter
+# Compiling C:\Users\woasi\AppData\Local\Temp\woasi@DESKTOP-65T0NUS_dpi_11032\win64_gcc-4.5.0\exportwrapper.c
+# Loading C:\Users\woasi\AppData\Local\Temp\woasi@DESKTOP-65T0NUS_dpi_11032\win64_gcc-4.5.0\dpi_auto_compile.dll
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+# 
+#           File in use by: Windows 7  Hostname: ADMIN  ProcessID: 2424
+# 
+#           Attempting to use alternate WLF file "./wlftw07df2".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+# 
+#           Using alternate file: ./wlftw07df2
+# 
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
+# ----------------------------------------------------------------
+# UVM-1.2
+# (C) 2007-2014 Mentor Graphics Corporation
+# (C) 2007-2014 Cadence Design Systems, Inc.
+# (C) 2006-2014 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# (C) 2013-2014 NVIDIA Corporation
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(453) @ 0: reporter [NO_DPI_TSTNAME] UVM_NO_DPI defined--getting UVM_TESTNAME directly, without DPI
+# UVM_INFO @ 0: reporter [RNTST] Running test cTest...
+# UVM_INFO ../uvm_comp/cApbMasterDriver.sv(46) @ 0: uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver [uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver] Build phase completed.
+# UVM_INFO ../uvm_comp/cApbMasterDriver.sv(46) @ 0: uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver [uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver] Build phase completed.
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_traversal.svh(279) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+# UVM_INFO ../uvm_comp/cScoreboard.sv(47) @ 25: uvm_test_top.coEnv.coScoreboard [SB RESET] [                  25] preset_n signal is acting
+# UVM_INFO ../uvm_comp/cScoreboard.sv(47) @ 75: uvm_test_top.coEnv.coScoreboard [SB RESET] [                  75] preset_n signal is acting
+# UVM_INFO ../uvm_comp/cScoreboard.sv(47) @ 125: uvm_test_top.coEnv.coScoreboard [SB RESET] [                 125] preset_n signal is acting
+#---------------------------------
+# UVM_WARNING ../uvm_comp/cTest.sv(35) @ 1000000: uvm_test_top [CTEST WARNING] TIMEOUT TIMEOUT TIMEOUT TIMEOUT TIMEOUT!!!
+#---------------------------------
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_objection.svh(1271) @ 1000000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_WARNING ../uvm_comp/cScoreboard.sv(148) @ 1000000: uvm_test_top.coEnv.coScoreboard [SB UNFINISH-TX] UART-TX: Queue is not empty, pending data:           1
+# UVM_INFO C:/questasim64_10.2c/uvm-1.2/src/base/uvm_report_server.svh(847) @ 1000000: reporter [UVM/REPORT/SERVER] 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   10
+# UVM_WARNING :    2
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [CTEST WARNING]     1
+# [NO_DPI_TSTNAME]     1
+# [RNTST]     1
+# [SB RESET]     3
+# [SB UNFINISH-TX]     1
+# [TEST_DONE]     1
+# [UVM/COMP/NAMECHECK]     1
+# [UVM/RELNOTES]     1
+# [uvm_test_top.coEnv.coApbMasterAgentRx.coApbMasterDriver]     1
+# [uvm_test_top.coEnv.coApbMasterAgentTx.coApbMasterDriver]     1
+# 
+# ** Note: $finish    : C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh(517)
+#    Time: 1 ms  Iteration: 68  Instance: /testTop
+# 1
+# Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh line 517
+# Simulation Breakpoint: 1
+# Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_10.2c/uvm-1.2/src/base/uvm_root.svh line 517
+# MACRO ./run_sim.do PAUSED at line 43
