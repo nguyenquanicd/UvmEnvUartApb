@@ -24,10 +24,12 @@
   `define APB_ERROR_SEVERITY
   `define APB_WARNING_SEVERITY
 `endif
+`define DLYCHK #1
 module apb_protocol_checker;
   //
   //parameter
   //
+  parameter INST_NAME   = "UART_CHK_CHECKER";
   parameter IDLE   = 2'd0;
   parameter SETUP_CHECK  = 2'd1;
   parameter ACCESS_CHECK = 2'd2;
@@ -64,15 +66,15 @@ module apb_protocol_checker;
   //
   //Store the control information
   always @ (posedge pclk) begin
-    pwrite_pre <= pwrite;
-    paddr_pre[31:0]  <= paddr[31:0];
-    pwdata_pre[31:0] <= pwdata[31:0];
-    pstrb_pre[3:0]  <= pstrb[3:0];
+    pwrite_pre <= `DLYCHK pwrite;
+    paddr_pre[31:0]  <= `DLYCHK paddr[31:0];
+    pwdata_pre[31:0] <= `DLYCHK pwdata[31:0];
+    pstrb_pre[3:0]  <= `DLYCHK pstrb[3:0];
   end
   //APB state register
   always @ (posedge pclk or negedge preset_n) begin
-    if (~preset_n) apb_state <= IDLE;
-    else apb_state[1:0] <= apb_next_state[1:0];
+    if (~preset_n) apb_state <= `DLYCHK IDLE;
+    else apb_state[1:0] <= `DLYCHK apb_next_state[1:0];
   end
   //
   //APB state monitor
@@ -108,31 +110,31 @@ module apb_protocol_checker;
         if (psel) begin
           //Check 1
           if (penable) begin
-            $display ("[APB_ERROR][%t] PSEL and PENABLE are asserted 1 in the SETUP phase\n", $time);
+            $display ("[APB_ERROR][%s][%t] PSEL and PENABLE are asserted 1 in the SETUP phase\n", INST_NAME, $time);
           end
         end
       end
       ACCESS_CHECK: begin
         //Check 1
         if (~penable) begin
-          $display ("[APB_ERROR][%t] PENABLE is not asserted 1 in the ACCESS phase\n", $time);
+          $display ("[APB_ERROR][%s][%t] PENABLE is not asserted 1 in the ACCESS phase\n", INST_NAME, $time);
         end
         //Check 2
         if (pwrite != pwrite_pre) begin
-          $display ("[APB_ERROR][%t] PWRITE is changed during PSEL=1\n", $time);
+          $display ("[APB_ERROR][%s][%t] PWRITE is changed during PSEL=1\n", INST_NAME, $time);
         end
         //Check 3
         if (paddr[31:0] != paddr_pre[31:0]) begin
-          $display ("[APB_ERROR][%t] PADDR is changed during PSEL=1\n", $time);
+          $display ("[APB_ERROR][%s][%t] PADDR is changed during PSEL=1\n", INST_NAME, $time);
         end
         //Check 4
         if (pwrite) begin
           if (pwdata[31:0] != pwdata_pre[31:0]) begin
-            $display ("[APB_ERROR][%t] PWDATA is changed during PSEL=1 and PWRITE=1\n", $time);
+            $display ("[APB_ERROR][%s][%t] PWDATA is changed during PSEL=1 and PWRITE=1\n", INST_NAME, $time);
           end
           //
           if (pstrb[3:0] != pstrb_pre[3:0]) begin
-            $display ("[APB_ERROR][%t] PSTRB is changed during PSEL=1 and PWRITE=1\n", $time);
+            $display ("[APB_ERROR][%s][%t] PSTRB is changed during PSEL=1 and PWRITE=1\n", INST_NAME, $time);
           end
         end
         //
@@ -146,9 +148,9 @@ module apb_protocol_checker;
   assign prdata_or = |prdata;
   always @ (posedge pclk) begin
     if (~preset_n)
-      pselReg <= 1'b0;
+      pselReg <= `DLYCHK 1'b0;
     else
-      pselReg <= psel;
+      pselReg <= `DLYCHK psel;
   end
   always @ (posedge pclk) begin
     if (preset_n) begin
@@ -157,55 +159,64 @@ module apb_protocol_checker;
         //Check 1 - Only check at the first cycle
         //when psel is changed from 0 to 1
         if ((~pselReg) & penable) begin
-          $display ("[APB_ERROR][%t] PSEL and PENABLE are asserted 1 at the same time\n", $time);
+          $display ("[APB_ERROR][%s][%t] PSEL and PENABLE are asserted 1 at the same time\n", INST_NAME, $time);
         end
         //Check 2
-        if (penable == 1'bx || penable == 1'bz) begin
-          $display ("[APB_ERROR][%t] PENABLE is x or z\n", $time);
-        end
+        case (penable)
+          1'bx: $display ("[APB_ERROR][%s][%t] PENABLE is x\n", INST_NAME, $time);
+          1'bz: $display ("[APB_ERROR][%s][%t] PENABLE is z\n", INST_NAME, $time);
+        endcase
         //Check 3
-        if (pwrite == 1'bx || pwrite == 1'bz) begin
-          $display ("[APB_ERROR][%t] PWRITE is x or z\n", $time);
-        end
+        case (pwrite)
+          1'bx: $display ("[APB_ERROR][%s][%t] PWRITE is x\n", INST_NAME, $time);
+          1'bz: $display ("[APB_ERROR][%s][%t] PWRITE is z\n", INST_NAME, $time);
+        endcase
         //Check 4
-        if (paddr_or == 1'bx || paddr_or == 1'bz) begin
-          $display ("[APB_ERROR][%t] PADDR is x or z\n", $time);
-        end
+        case (paddr_or)
+          1'bx: $display ("[APB_ERROR][%s][%t] PADDR is x\n", INST_NAME, $time);
+          1'bz: $display ("[APB_ERROR][%s][%t] PADDR is z\n", INST_NAME, $time);
+        endcase
         //Check 5
         if (pwrite) begin
-          if (pstrb_or == 1'bx || pstrb_or == 1'bz) begin
-            $display ("[APB_ERROR][%t] PSTRB is x or z\n", $time);
-          end
+          case (pstrb_or)
+            1'bx: $display ("[APB_ERROR][%s][%t] PSTRB is x\n", INST_NAME, $time);
+            1'bz: $display ("[APB_ERROR][%s][%t] PSTRB is z\n", INST_NAME, $time);
+          endcase
         end
         //Check 6
         `ifdef APB_WARNING_SEVERITY
           if (pwrite) begin
-            if (pwdata_or == 1'bx || pwdata_or == 1'bz) begin
-              $display ("[APB_WARNING][%t] PWDATA is x or z\n", $time);
-            end
+            case (pwdata_or)
+              1'bx: $display ("[APB_ERROR][%s][%t] PWDATA is x\n", INST_NAME, $time);
+              1'bz: $display ("[APB_ERROR][%s][%t] PWDATA is z\n", INST_NAME, $time);
+            endcase
           end
         `endif
         //Check 7
-        if (pready == 1'bx || pready == 1'bz) begin
-          $display ("[APB_ERROR][%t] PREADY is x or z\n", $time);
-        end
+        case (pready)
+          1'bx: $display ("[APB_ERROR][%s][%t] PREADY is x\n", INST_NAME, $time);
+          1'bz: $display ("[APB_ERROR][%s][%t] PREADY is z\n", INST_NAME, $time);
+        endcase
         //Check 8
         if (pready) begin
-          if (pslverr == 1'bx || pslverr == 1'bz) begin
-            $display ("[APB_ERROR][%t] PSLVERR is x or z\n", $time);
-          end
+          case (pslverr)
+            1'bx: $display ("[APB_ERROR][%s][%t] PSLVERR is x\n", INST_NAME, $time);
+            1'bz: $display ("[APB_ERROR][%s][%t] PSLVERR is z\n", INST_NAME, $time);
+          endcase
         end
         //Check 9
         if (pready) begin
-          if (prdata_or == 1'bx || prdata_or == 1'bz) begin
-            $display ("[APB_ERROR][%t] PRDATA is x or z\n", $time);
-          end
+          case (prdata_or)
+            1'bx: $display ("[APB_ERROR][%s][%t] PRDATA is x\n", INST_NAME, $time);
+            1'bz: $display ("[APB_ERROR][%s][%t] PRDATA is z\n", INST_NAME, $time);
+          endcase
         end
       end
       //Check 10
-      if (psel == 1'bx || psel == 1'bz) begin
-        $display ("[APB_ERROR][%t] PSEL is x or z\n", $time);
-      end
+      case (psel)
+        1'bx: $display ("[APB_ERROR][%s][%t] PSEL is x\n", INST_NAME, $time);
+        1'bz: $display ("[APB_ERROR][%s][%t] PSEL is z\n", INST_NAME, $time);
+      endcase
     end
   end
   //
@@ -216,19 +227,19 @@ module apb_protocol_checker;
       if (preset_n) begin
         if (psel & ~penable) begin
           if (pwrite) begin
-            $display ("[APB_INFO][%t] Starting a WRITE transaction PADDR=%8h PWDATA=%8h PSTRB=%4h\n", $time, paddr, pwdata, pstrb);
+            $display ("[APB_INFO][%s][%t] Starting a WRITE transaction PADDR=%8h PWDATA=%8h PSTRB=%4h\n", INST_NAME, $time, paddr, pwdata, pstrb);
           end
           else begin
-            $display ("[APB_INFO][%t] Starting a READ transaction PADDR=%8h\n", $time, paddr);
+            $display ("[APB_INFO][%s][%t] Starting a READ transaction PADDR=%8h\n", INST_NAME, $time, paddr);
           end
         end
         //
         if (psel & penable & pready) begin
           if (pwrite) begin
-            $display ("[APB_INFO][%t] Ending a WRITE transaction PADDR=%8h PWDATA=%8h PSTRB=%4h PSLVERR=%b\n", $time, paddr, pwdata, pstrb, pslverr);
+            $display ("[APB_INFO][%s][%t] Ending a WRITE transaction PADDR=%8h PWDATA=%8h PSTRB=%4h PSLVERR=%b\n", INST_NAME, $time, paddr, pwdata, pstrb, pslverr);
           end
           else begin
-            $display ("[APB_INFO][%t] Starting a READ transaction PADDR=%8h PRDATA=%h PSLVERR=%b\n", $time, paddr, pslverr);
+            $display ("[APB_INFO][%s][%t] Starting a READ transaction PADDR=%8h PRDATA=%h PSLVERR=%b\n", INST_NAME, $time, paddr, prdata, pslverr);
           end
         end
       end

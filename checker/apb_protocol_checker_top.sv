@@ -11,6 +11,7 @@ module apb_protocol_checker_top;
   `define apb1_if dut_top
   //Checker connection
   apb_protocol_checker apb0_chk();
+    defparam apb0_chk.INST_NAME = "apb0_chk";
     assign apb0_chk.pclk     = `apb0_if.pclk_0;
     assign apb0_chk.preset_n = `apb0_if.preset_n_0;
     assign apb0_chk.pwrite   = `apb0_if.pwrite_0;
@@ -24,6 +25,7 @@ module apb_protocol_checker_top;
     assign apb0_chk.pslverr  = `apb0_if.pslverr_0;
   
   apb_protocol_checker apb1_chk();
+    defparam apb1_chk.INST_NAME = "apb1_chk";
     assign apb1_chk.pclk     = `apb1_if.pclk_1;
     assign apb1_chk.preset_n = `apb1_if.preset_n_1;
     assign apb1_chk.pwrite   = `apb1_if.pwrite_1;
