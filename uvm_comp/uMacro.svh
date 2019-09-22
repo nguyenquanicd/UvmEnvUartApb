@@ -69,6 +69,8 @@
                WriteSeq.conEn      == 1'b0; \
                WriteSeq.addr[31:0] == address; \
                WriteSeq.be[3:0]    == 4'b1111; \
+               WriteSeq.data<=32'hFF; \
+               WriteSeq.data>= 32'h00; \
                })
                
 //--------------------------------------
