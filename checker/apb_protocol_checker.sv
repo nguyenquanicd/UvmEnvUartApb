@@ -56,20 +56,9 @@ module apb_protocol_checker;
   logic pwdata_or;
   logic pstrb_or;
   logic prdata_or;
-  logic pwrite_pre;
-  logic [31:0] paddr_pre;
-  logic [31:0] pwdata_pre;
-  logic [3:0] pstrb_pre;
   //
   //checker body
   //
-  //Store the control information
-  always @ (posedge pclk) begin
-    pwrite_pre <= `DLYCHK pwrite;
-    paddr_pre[31:0]  <= `DLYCHK paddr[31:0];
-    pwdata_pre[31:0] <= `DLYCHK pwdata[31:0];
-    pstrb_pre[3:0]  <= `DLYCHK pstrb[3:0];
-  end
   //
   //APB state monitor
   //
@@ -114,10 +103,6 @@ module apb_protocol_checker;
         //Check 1
         if (~penable) begin
           $display ("[APB_ERROR][%s][%t] PENABLE is not asserted 1 in the ACCESS phase\n", INST_NAME, $time);
-        end
-        //Check 2
-        if (pwrite != pwrite_pre) begin
-          $display ("[APB_ERROR][%s][%t] PWRITE is changed during PSEL=1\n", INST_NAME, $time);
         end
       end
     endcase
