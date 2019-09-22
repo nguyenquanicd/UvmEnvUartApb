@@ -136,15 +136,6 @@ module apb_protocol_checker;
           1'bz: $display ("[APB_ERROR][%s][%t] PSTRB is z\n", INST_NAME, $time);
         endcase
       end
-      //Check 6
-      `ifdef APB_WARNING_SEVERITY
-        if (pwrite) begin
-          case (pwdata_or)
-            1'bx: $display ("[APB_ERROR][%s][%t] PWDATA is x\n", INST_NAME, $time);
-            1'bz: $display ("[APB_ERROR][%s][%t] PWDATA is z\n", INST_NAME, $time);
-          endcase
-        end
-      `endif
       //Check 7
       case (pready)
         1'bx: $display ("[APB_ERROR][%s][%t] PREADY is x\n", INST_NAME, $time);
@@ -157,13 +148,22 @@ module apb_protocol_checker;
           1'bz: $display ("[APB_ERROR][%s][%t] PSLVERR is z\n", INST_NAME, $time);
         endcase
       end
-      //Check 9
-      if (pready) begin
-        case (prdata_or)
-          1'bx: $display ("[APB_ERROR][%s][%t] PRDATA is x\n", INST_NAME, $time);
-          1'bz: $display ("[APB_ERROR][%s][%t] PRDATA is z\n", INST_NAME, $time);
-        endcase
-      end
+      //Check 6
+      `ifdef APB_WARNING_SEVERITY
+        if (pwrite) begin
+          case (pwdata_or)
+            1'bx: $display ("[APB_WARNING][%s][%t] PWDATA is x\n", INST_NAME, $time);
+            1'bz: $display ("[APB_WARNING][%s][%t] PWDATA is z\n", INST_NAME, $time);
+          endcase
+        end
+        //Check 9
+        if (pready) begin
+          case (prdata_or)
+            1'bx: $display ("[APB_WARNING][%s][%t] PRDATA is x\n", INST_NAME, $time);
+            1'bz: $display ("[APB_WARNING][%s][%t] PRDATA is z\n", INST_NAME, $time);
+          endcase
+        end
+      `endif
     end
     //Check 10
     case (psel)
