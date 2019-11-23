@@ -78,7 +78,7 @@ module uart_protocol_checker;
     end
   end
   //-------------------------------------------------
-  // (1) Detect the user settings via APB interface
+  // (2) Detect the user settings via APB interface
   //-------------------------------------------------
   assign reg_sel = psel & penable & pready;
   assign reg_we = pwrite & reg_sel & (&pstrb[3:0]);
@@ -95,7 +95,7 @@ module uart_protocol_checker;
     else if(br_we) apb_chk_br_info[7:0] <= `DLYCHK pwdata[7:0];
   end
   //-------------------------------------------------
-  // (1) FSM detect a UART frame
+  // (2) FSM detect a UART frame
   //-------------------------------------------------
   //Synchronize the UART net
   // Detect the rising edge 
