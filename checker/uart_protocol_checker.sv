@@ -182,6 +182,19 @@ module uart_protocol_checker;
   //-------------------------------------------------
   // Report at END of simulation
   //-------------------------------------------------
+  covergroup back_2_back @ (posedge pclk);
+    coverpoint chk_uart_state {
+      bins pass[] = {1} iff (frame_start && frame_end) ;
+    }
+    option.per_instance = 1;
+  endgroup
+  back_2_back b2b = new();
+  initial begin
+    b2b.sample();
+  end
+  //-------------------------------------------------
+  // Report at END of simulation
+  //-------------------------------------------------
   final begin
     if (baud_rate_error_report) begin
       $display ("[UART_ERROR][%s][%s] Bit width is violated  ", $time, INST_NAME, INST_NET); 
