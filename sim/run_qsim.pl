@@ -23,7 +23,7 @@ if ($ARGV[0] eq "MERGE_COVERAGE") {
 	
 	system "$vmerge";
 	
-	my $vcover = "$VCov report -html -htmldir ./ -code bcestf -stmtaltflow -cvg mergedCov.ucdb";
+	my $vcover = "$VCov report -html -htmldir ./ -code bcestf -cvg mergedCov.ucdb";
 	#my $vcover = "$VCov report -html -htmldir ./ -stmtaltflow -cvg cov.ucdb";
 
 	system "$vcover";
@@ -79,7 +79,8 @@ if ($ARGV[0] eq "MERGE_COVERAGE") {
 	#Generate html report
 	#---------------------------------------------
     #my $vcover = "$VCov report -html -htmldir ./ -code bcestf -stmtaltflow -cvg $ARGV[0].ucdb";
-    my $vcover = "$VCov report -html -code bcestf -stmtaltflow -cvg $ARGV[0].ucdb";
+    # my $vcover = "$VCov report -html -code bcestf -stmtaltflow -cvg $ARGV[0].ucdb";
+    my $vcover = "$VCov report -html -code bcestf -cvg $ARGV[0].ucdb";
 	
 	system "$vcover";
 }
