@@ -53,7 +53,8 @@ if ($ARGV[0] eq "MERGE_COVERAGE") {
 	testTop.sv \\
 	-timescale 1ns/1ns \\
 	-l vlog.log \\
-	+cover=bcestf";
+	+cover=bcestf \\
+    -coveropt 1";
 	
 	system "$vlog";
 	
@@ -65,6 +66,7 @@ if ($ARGV[0] eq "MERGE_COVERAGE") {
 	+UVM_VERBOSITY=UVM_LOW \\
 	-do \"coverage save -codeAll -cvg -onexit $ARGV[0].ucdb; run -all;\" \\
 	-coverage \\
+    -coveranalysis \\
 	-cvgperinstance \\
 	-l vsim.log";
 	
@@ -76,7 +78,8 @@ if ($ARGV[0] eq "MERGE_COVERAGE") {
 	#---------------------------------------------
 	#Generate html report
 	#---------------------------------------------
-	my $vcover = "$VCov report -html -htmldir ./ -code bcestf -stmtaltflow -cvg $ARGV[0].ucdb";
+    #my $vcover = "$VCov report -html -htmldir ./ -code bcestf -stmtaltflow -cvg $ARGV[0].ucdb";
+    my $vcover = "$VCov report -html -code bcestf -stmtaltflow -cvg $ARGV[0].ucdb";
 	
 	system "$vcover";
 }
