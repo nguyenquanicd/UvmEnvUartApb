@@ -180,7 +180,7 @@ module uart_protocol_checker;
     end
   end
   //-------------------------------------------------
-  // Report at END of simulation
+  // Coverage example
   //-------------------------------------------------
   covergroup back_2_back @ (posedge pclk);
     coverpoint chk_uart_state {
