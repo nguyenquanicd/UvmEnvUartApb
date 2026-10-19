@@ -1,4 +1,10 @@
 #---------------------------------------------
+#UVM source: set the environment variable UVM_SRC to the 'src' directory of UVM
+#(Questa's own uvm-1.2/src, or Accellera UVM 2020.3.1). Default below is the old installation path.
+#---------------------------------------------
+if {![info exists env(UVM_SRC)]} { set env(UVM_SRC) C:/questasim64_10.2c/uvm-1.2/src }
+
+#---------------------------------------------
 #Compilation
 #---------------------------------------------
 vlog -work work \
@@ -6,7 +12,7 @@ vlog -work work \
   +define+UVM_REGEX_NO_DPI \
   +define+UVM_NO_DPI \
   +define+INTERRUPT_COM \
-  +incdir+C:/questasim64_10.2c/uvm-1.2/src \
+  +incdir+$env(UVM_SRC) \
   -sv \
   ../dut/uart_apb_if.v \
   ../dut/uart_receiver.v \
@@ -45,4 +51,4 @@ run -all
 #---------------------------------------------
 #Report the coverage result
 #---------------------------------------------
-coverage report -file {D:/20.Project/3.Github/New folder/UvmEnvUartApb/sim/cov_report.txt} -byfile -assert -directive -cvg -codeAll
+coverage report -file cov_report.txt -byfile -assert -directive -cvg -codeAll

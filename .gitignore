@@ -1,0 +1,17 @@
+# Build and simulation output
+build/
+work/
+*.ucdb
+*.wlf
+transcript
+modelsim.ini
+vsim.log
+vlog.log
+*.vcd
+*.fst
+sim/index.html
+sim/cov_report.txt
+
+# Python
+__pycache__/
+*.pyc

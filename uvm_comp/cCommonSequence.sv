@@ -28,14 +28,14 @@ class cApbMasterWriteSeq extends uvm_sequence#(cApbTransaction);
 	virtual task body();
 		start_item(coApbTransaction);
     //coApbTransaction.randomize();
-		assert(coApbTransaction.randomize() with {
-      coApbTransaction.apbSeqEn  == 1;
-      coApbTransaction.apbConEn  == conEn;
-			coApbTransaction.paddr  == addr;
-			coApbTransaction.pwdata == data;
-			coApbTransaction.pstrb  == be;
-			coApbTransaction.pwrite == 1;
-		});
+		//Every field is fixed by the user: assign them directly (no constraint solver needed).
+		coApbTransaction.apbSeqEn = 1;
+		coApbTransaction.apbConEn = conEn;
+		coApbTransaction.paddr    = addr;
+		coApbTransaction.pwrite   = 1;
+		coApbTransaction.pwdata   = data;
+		coApbTransaction.pstrb    = be;
+		coApbTransaction.apbDelay = 0;
 		finish_item(coApbTransaction);
 	endtask
 endclass
@@ -62,12 +62,14 @@ class cApbMasterReadSeq extends uvm_sequence#(cApbTransaction);
 	virtual task body();
    
 		start_item(coApbTransaction);
-		assert(coApbTransaction.randomize() with {
-      coApbTransaction.apbSeqEn  == 1;
-      coApbTransaction.apbConEn  == conEn;
-			coApbTransaction.paddr  == addr;
-			coApbTransaction.pwrite == 0;
-		});
+		//Every field is fixed by the user: assign them directly (no constraint solver needed).
+		coApbTransaction.apbSeqEn = 1;
+		coApbTransaction.apbConEn = conEn;
+		coApbTransaction.paddr    = addr;
+		coApbTransaction.pwrite   = 0;
+		coApbTransaction.pwdata   = '0;
+		coApbTransaction.pstrb    = '0;
+		coApbTransaction.apbDelay = 0;
 		finish_item(coApbTransaction);
     //Compare the actual data and the expected data
     compareResult = (coApbTransaction.prdata ^ expectedReadData) & mask;
@@ -100,12 +102,14 @@ class cApbMasterWriteSeqNotCmpr extends uvm_sequence#(cApbTransaction);
 
 	virtual task body();
 		start_item(coApbTransaction);
-		assert(coApbTransaction.randomize() with {
-            coApbTransaction.apbSeqEn  == 1;
-            coApbTransaction.apbConEn  == conEn;
-			coApbTransaction.paddr  == addr;
-			coApbTransaction.pwrite == 0;
-		});
+		//Every field is fixed by the user: assign them directly (no constraint solver needed).
+		coApbTransaction.apbSeqEn = 1;
+		coApbTransaction.apbConEn = conEn;
+		coApbTransaction.paddr    = addr;
+		coApbTransaction.pwrite   = 0;
+		coApbTransaction.pwdata   = '0;
+		coApbTransaction.pstrb    = '0;
+		coApbTransaction.apbDelay = 0;
 		finish_item(coApbTransaction);
 	endtask
 endclass

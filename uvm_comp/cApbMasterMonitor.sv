@@ -25,11 +25,11 @@ class cApbMasterMonitor extends uvm_monitor;
 		super.build_phase(phase);
     //Check the APB connection
 		if(!uvm_config_db#(virtual interface ifApbMaster)::get(this,"","vifApbMaster",vifApbMaster)) begin
-			`uvm_error("cApbMasterDriver","Can NOT get vifApbMaster!!!")
+			`uvm_error("NON-APBIF","Can NOT get vifApbMaster!!!")
 		end
     //Check the interrupt connection
     if(!uvm_config_db#(virtual interface ifInterrupt)::get(this,"","vifInterrupt",vifInterrupt)) begin
-			`uvm_error("cVSequencer","Can NOT get vifInterrupt!!!")
+			`uvm_error("NON-INTIF","Can NOT get vifInterrupt!!!")
 		end
     //Create objects and analysis ports
     ap_toScoreboard = new("ap_toScoreboard", this);	
@@ -51,36 +51,42 @@ class cApbMasterMonitor extends uvm_monitor;
 		join
     
   endtask: run_phase	
-	//On each clock, detect a valid transaction
-  // -> get the valid transaction
-  // -> send the transaction to analysis port ap_toScoreboard
+  //Detect a completed APB transfer on the clock edge that ends the ACCESS phase
+  // -> sample the signals (at the clock edge they still hold the values of the ACCESS cycle)
+  // -> send a NEW copy of the transaction to analysis port ap_toScoreboard
+  //    (a copy per transfer: the scoreboard may keep the handle)
   virtual task collect_data();
-	  while(1) begin
-      @(posedge vifApbMaster.pclk) begin
-        #1ps
-        if(vifApbMaster.psel && vifApbMaster.penable && vifApbMaster.pready) begin
-          //Get APB transaction on APB interface
-          coApbTransaction.paddr[31:0] =  vifApbMaster.paddr[31:0];
-          coApbTransaction.pstrb[3:0] = vifApbMaster.pstrb[3:0];
-          coApbTransaction.pwrite = vifApbMaster.pwrite;
-          coApbTransaction.pwdata[31:0] =  vifApbMaster.pwdata[31:0];
-          coApbTransaction.prdata[31:0] =  vifApbMaster.prdata[31:0];
-          //Send the transaction to analysis port which is connected to Scoreboard
-          ap_toScoreboard.write(coApbTransaction);
-        end
+    cApbTransaction coCopy;
+    while(1) begin
+      @(posedge vifApbMaster.pclk);
+      if (vifApbMaster.preset_n === 1'b1
+      && vifApbMaster.psel === 1'b1 && vifApbMaster.penable === 1'b1 && vifApbMaster.pready === 1'b1) begin
+        coCopy = cApbTransaction::type_id::create("coCopy");
+        coCopy.paddr[31:0]  = vifApbMaster.paddr[31:0];
+        coCopy.pstrb[3:0]   = vifApbMaster.pstrb[3:0];
+        coCopy.pwrite       = vifApbMaster.pwrite;
+        coCopy.pwdata[31:0] = vifApbMaster.pwdata[31:0];
+        coCopy.prdata[31:0] = vifApbMaster.prdata[31:0];
+        coCopy.pslverr      = vifApbMaster.pslverr;
+        coCopy.pready       = 1;
+        //Send the transaction to the analysis port which is connected to the Scoreboard
+        ap_toScoreboard.write(coCopy);
       end
-	  end
+    end
   endtask
-	//On each clock, send the reset status to Scoreboard
-  //via analysis port preset_toScoreboard
-	virtual task detect_reset();
-	  while(1) begin
-			@(posedge vifApbMaster.pclk);
-      #1ps
-			this.preset_n = vifApbMaster.preset_n;
-			preset_toScoreboard.write(this.preset_n);
-		end
-	endtask
+  //Send the reset status to the Scoreboard when it changes (and once at the start)
+  virtual task detect_reset();
+    logic last;
+    last = 1'bx;
+    while(1) begin
+      @(posedge vifApbMaster.pclk);
+      this.preset_n = vifApbMaster.preset_n;
+      if (this.preset_n !== last) begin
+        preset_toScoreboard.write(this.preset_n);
+        last = this.preset_n;
+      end
+    end
+  endtask
   //Detect interrupt toggle
   logic [4:0] ifEn = 5'd0;
   `ifdef INTERRUPT_COM
@@ -94,7 +100,6 @@ class cApbMasterMonitor extends uvm_monitor;
     //-------------------------------------
     while (1) begin
       @(posedge vifApbMaster.pclk);
-      #1ps
       if (vifApbMaster.psel && vifApbMaster.penable 
       && vifApbMaster.pready && vifApbMaster.pwrite 
       && (vifApbMaster.paddr[15:0] == 16'h0010)) begin
@@ -107,7 +112,11 @@ class cApbMasterMonitor extends uvm_monitor;
   virtual task detect_intf ();
     while(1) begin
       @(posedge vifApbMaster.pclk);
-      #1ps
+      //The interrupt outputs have no defined value while the reset is active: do not check them
+      if (vifApbMaster.preset_n !== 1'b1) begin
+        ifSta = '0;
+        continue;
+      end
       //-------------------------------------
       // Check the interrupt signals
       //-------------------------------------

@@ -1,0 +1,5 @@
+Excluded from build and regression: this pattern does not compile (it is unfinished).
+- line 17: class cApbMasterReadSeqNotCmpr does not exist (the class is named cApbMasterWriteSeqNotCmpr).
+- line 66: syntax error in randomize(data8b) with (...); the variable 'data' is not declared.
+- it ends with $stop and indexes ExpDataArray entries that are never filled.
+Finish the pattern, then delete this file to re-enable it.
