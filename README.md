@@ -26,28 +26,65 @@ UVM environment for a UART with an APB register interface. It contains the full 
 
 Two UART instances (`dut/dut_top.v`) are connected to each other: the TX pin of UART-0 drives the RX pin of UART-1 and the reverse. Each UART has its own APB register interface and its own clock. One APB master agent drives each interface. The scoreboard predicts what UART-1 must receive from what was written to UART-0 (and the reverse) and compares it with what is read back.
 
-```text
-                                 testTop (sim/testTop.sv)
-  clock/reset generator, interfaces, DUT, checkers, uvm_config_db, run_test()
- +----------------------------------------------------------------------------------+
- |  test_<pattern>  (cTest)  --  +TIMEOUT_NS watchdog, verdict in report_phase       |
- |   |                                                                               |
- |   +-- cVSequence (test pattern, pat/<name>/cVSequence.sv) -- runs on --+            |
- |   |                                                                    v            |
- |   +-- cEnv                                              cVSequencer (virtual)     |
- |        |                                               holds handles to both      |
- |        |                                               agents and the scoreboard  |
- |        +-- cApbMasterAgent "coApbMasterAgentTx" (UART-0)                          |
- |        |     +-- cApbMasterSequencer --item--> cApbMasterDriver --APB--+          |
- |        |     +-- cApbMasterMonitor <----------------- APB, reset, irq -+-----+    |
- |        +-- cApbMasterAgent "coApbMasterAgentRx" (UART-1)                    |    |
- |        |     +-- (same three components)                                    |    |
- |        +-- cScoreboard <-- cApbTransaction (TX monitor, RX monitor), reset  |    |
- +---------------------------------------------------------------------------|----|--+
-                                                                              v    v
-        ifApbMaster (Tx/Rx)  ifInterrupt (Tx/Rx)  <----->  dut_top  <---- uart_protocol_checker
-        apb_protocol_checker (module, not UVM)               UART-0 <==TX/RX==> UART-1
+```mermaid
+%%{init: {"theme": "base", "themeVariables": {"background": "#ffffff", "primaryColor": "#ffffff", "primaryTextColor": "#000000", "primaryBorderColor": "#000000", "lineColor": "#000000", "clusterBkg": "#ffffff", "clusterBorder": "#6a1b9a", "fontFamily": "Arial"}}}%%
+flowchart TB
+  PAT["cVSequence<br/>test pattern, pat/NAME"]
+  subgraph UVM["UVM testbench, class tree under cTest"]
+    direction TB
+    TEST["cTest<br/>watchdog +TIMEOUT_NS, verdict"]
+    subgraph ENV["cEnv"]
+      direction TB
+      VSQR["cVSequencer<br/>virtual sequencer"]
+      SB["cScoreboard<br/>queue per UART, compare"]
+      subgraph AGT["cApbMasterAgent Tx, UART-0"]
+        direction LR
+        SQT["cApbMasterSequencer"] --> DRT["cApbMasterDriver"]
+        MONT["cApbMasterMonitor"]
+      end
+      subgraph AGR["cApbMasterAgent Rx, UART-1"]
+        direction LR
+        SQR["cApbMasterSequencer"] --> DRR["cApbMasterDriver"]
+        MONR["cApbMasterMonitor"]
+      end
+    end
+  end
+  subgraph HW["Design side, module testTop"]
+    direction TB
+    IFT["ifApbMaster Tx<br/>ifInterrupt Tx"]
+    IFR["ifApbMaster Rx<br/>ifInterrupt Rx"]
+    subgraph DUT["dut_top"]
+      direction LR
+      U0["UART-0<br/>APB slave + TX/RX"] <-->|"UART lines"| U1["UART-1<br/>APB slave + TX/RX"]
+    end
+    CHK["apb_protocol_checker<br/>uart_protocol_checker"]
+  end
+  TEST -->|"creates, starts"| PAT
+  PAT -->|"runs on"| VSQR
+  VSQR -->|"macros ApbWriteTX / ApbReadTX"| SQT
+  VSQR -->|"macros ApbWriteRX / ApbReadRX"| SQR
+  DRT -->|"drives APB"| IFT
+  DRR -->|"drives APB"| IFR
+  IFT -.->|"observed"| MONT
+  IFR -.->|"observed"| MONR
+  IFT <--> U0
+  IFR <--> U1
+  MONT ==>|"cApbTransaction, reset"| SB
+  MONR ==>|"cApbTransaction"| SB
+  CHK -.->|"watches"| DUT
+  classDef key fill:#6a1b9a,stroke:#000000,color:#ffffff;
+  classDef plain fill:#ffffff,stroke:#000000,color:#000000;
+  class TEST,SB,PAT key;
+  class VSQR,SQT,DRT,MONT,SQR,DRR,MONR,IFT,IFR,U0,U1,CHK plain;
+  style UVM fill:#ffffff,stroke:#6a1b9a,stroke-width:2px
+  style HW fill:#ffffff,stroke:#6a1b9a,stroke-width:2px
+  style ENV fill:#ffffff,stroke:#000000
+  style DUT fill:#ffffff,stroke:#000000
+  style AGT fill:#ffffff,stroke:#000000,stroke-dasharray:4 3
+  style AGR fill:#ffffff,stroke:#000000,stroke-dasharray:4 3
 ```
+
+Colours: white, black and purple only. Purple boxes are the components that decide the verdict (`cTest`, `cScoreboard`) and the user's test pattern; thick arrows are the analysis ports to the scoreboard; dotted arrows are observation only.
 
 The virtual sequencer `cVSequencer` is an ordinary `uvm_sequencer#(cApbTransaction)` with extra handles (`coApbMasterAgentTx`, `coApbMasterAgentRx`, `coScoreboard`). The test pattern runs on it and reaches the agent sequencers through `p_sequencer.coApbMasterAgentTx.coApbMasterSequencer` (and `...Rx...`), which is what the macros do.
 
